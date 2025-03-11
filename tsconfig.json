@@ -3,7 +3,7 @@
     "outDir": "./dist/",
     "noImplicitAny": true,
     "target": "ES2022",
-    "lib": ["ES2023"],
+    "lib": ["ES2023", "dom", "DOM.Iterable"],
     "jsx": "react-jsx",
     "strict": true,
     "allowJs": true,
