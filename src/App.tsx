@@ -1,38 +1,53 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { T, Link } from '@admiral-ds/react-ui';
+import { MyForm } from './components/Myform';
+import styled from 'styled-components';
 
-const url = 'https://jsonplaceholder.typicode.com/posts?_start=10&_limit=10';
+const StyledButton = styled.button`
+    background-color: palevioletred;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+`;
 
-interface Post {
-    userId: number;
-    id: number;
-    title: string;
-    body: string;
-}
-// var unusedVariable = "test" //test lint
+const Divider = styled.div`
+    width: 10px;
+    height: 12px;
+`;
 
-export const App = () => {
+export function App() {
     const [count, setCount] = useState(0);
-    const [posts, setPosts] = useState([]);
-
-    useEffect(() => {
-        (async () => {
-            const response = await fetch(url);
-            const data = await response.json();
-            setPosts(data);
-        })(); // переделать на iife
-    }, []);
 
     return (
         <div id="root">
-            <h1>{count}</h1>
-            <button onClick={() => setCount(count + 1)}>+1</button>
-            <button onClick={() => (count <= 0 ? setCount(0) : setCount(count - 1))}>-1</button>
-            {posts.map(({ title, body, id }: Post) => (
-                <div key={id}>
-                    <h1>{title}</h1>
-                    <p>{body} </p>
-                </div>
-            ))}
+            <MyForm />
+            <div>
+                <a href="https://vitejs.dev">
+                    <img className="logo" alt="Vite logo" />
+                </a>
+                <a href="https://react.dev">
+                    <img className="logo react" alt="React logo" />
+                </a>
+            </div>
+            <h1>Vite + React</h1>
+            <div className="card">
+                <StyledButton className="button" onClick={() => setCount((count) => count + 1)}>
+                    count is {count}
+                </StyledButton>
+                <T font="Subtitle/Subtitle 1" as="p">
+                    Edit <code>src/App.tsx</code> and save to test HMR
+                </T>
+            </div>
+            <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
+            <Link
+                appearance="primary"
+                href="https://admiralds.github.io/react-ui"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Admiral Storybook
+                <Divider />
+            </Link>
         </div>
     );
-};
+}

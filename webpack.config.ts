@@ -4,7 +4,7 @@ import HTMLWebpackPlugin from 'html-webpack-plugin';
 
 const config: webpack.Configuration = {
     mode: 'development',
-    entry: path.resolve(__dirname, 'src', 'index.tsx'),
+    entry: path.resolve(__dirname, 'src', 'main.tsx'),
     output: {
         filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, 'build'),
@@ -19,9 +19,22 @@ const config: webpack.Configuration = {
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
+                test: /\.svg$/i,
+                issuer: /\.[jt]sx?$/,
+                use: ['@svgr/webpack'],
+            },
+            {
+                test: /\.(gif|svg|jpg|png|otf|ttf)$/,
+                use: 'file-loader',
+            },
+            {
+                test: /\.(js|ts|tsx)$/,
                 use: 'ts-loader',
                 exclude: /node_modules/,
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
             },
         ],
     },
