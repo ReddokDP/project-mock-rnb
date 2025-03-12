@@ -4,7 +4,7 @@ import HTMLWebpackPlugin from "html-webpack-plugin";
 
 const config: webpack.Configuration = {
         mode: 'development',
-        entry: path.resolve(__dirname, 'src', 'index.ts'),
+        entry: path.resolve(__dirname, 'src', 'index.tsx'),
         output: {
             filename: '[name].[contenthash].js',
             path: path.resolve(__dirname, 'build'),
