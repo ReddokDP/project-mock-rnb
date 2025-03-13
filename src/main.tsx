@@ -7,6 +7,7 @@ import './index.css';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import ErrorBoundary from './components/ErrorBoundary';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
@@ -14,9 +15,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <DropdownProvider>
                 <FontsVTBGroup />
                 <ErrorBoundary>
-                    <Provider store={store}>
-                    <App />
-                    </Provider>
+                    <BrowserRouter>
+                        <Provider store={store}>
+                            <App />
+                        </Provider>
+                    </BrowserRouter>
                 </ErrorBoundary>
             </DropdownProvider>
         </ThemeProvider>
