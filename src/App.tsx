@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { T, Link } from '@admiral-ds/react-ui';
 import { MyForm } from './components/Myform';
 import styled from 'styled-components';
+import {Counter} from "./components/Counter";
 
 const StyledButton = styled.button`
     background-color: palevioletred;
@@ -20,6 +21,11 @@ export function App() {
 
     return (
         <div id="root">
+            <div>
+                <h2>Redux Toolkit and RTKQ</h2>
+                <Counter />
+                <hr />
+            </div>
             <MyForm />
             <div>
                 <a href="https://vitejs.dev">
