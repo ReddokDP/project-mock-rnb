@@ -4,6 +4,8 @@ import { ThemeProvider } from 'styled-components';
 import { LIGHT_THEME, FontsVTBGroup, DropdownProvider } from '@admiral-ds/react-ui';
 import { App } from './App';
 import './index.css';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 import ErrorBoundary from './components/ErrorBoundary';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -12,7 +14,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <DropdownProvider>
                 <FontsVTBGroup />
                 <ErrorBoundary>
+                    <Provider store={store}>
                     <App />
+                    </Provider>
                 </ErrorBoundary>
             </DropdownProvider>
         </ThemeProvider>
