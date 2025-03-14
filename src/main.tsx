@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from 'styled-components';
 import { LIGHT_THEME, FontsVTBGroup, DropdownProvider } from '@admiral-ds/react-ui';
-import { App } from './App';
 import './index.css';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import ErrorBoundary from './components/ErrorBoundary';
-import { BrowserRouter } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
+import routesConfig from '../routesConfig';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
@@ -15,11 +15,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <DropdownProvider>
                 <FontsVTBGroup />
                 <ErrorBoundary>
-                    <BrowserRouter>
-                        <Provider store={store}>
-                            <App />
-                        </Provider>
-                    </BrowserRouter>
+                    <Provider store={store}>
+                        <RouterProvider router={routesConfig} />
+                    </Provider>
                 </ErrorBoundary>
             </DropdownProvider>
         </ThemeProvider>
