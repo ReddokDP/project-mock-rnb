@@ -1,25 +1,27 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { App } from './src/App';
-import { MyForm } from './src/components/Myform';
-import { Counter } from './src/components/Counter';
-import { Home } from './src/components/Home';
+import { Layout } from './src/components/LayoutContainer';
+import AuthorizationForm from './src/components/AuthorizationForm/AuthorizationForm';
+import RegistrationForm from './src/components/RegistrationForm/RegistrationForm';
+import HelloPage from './src/components/HelloPage';
 
 const routesConfig = createBrowserRouter([
     {
-        path: '/',
-        element: <App />,
+        path: "/",
+        element: <Layout />,
         children: [
             {
-                path: '',
-                element: <Home />,
+                index: true,
+                element: <AuthorizationForm />,
             },
             {
-                path: 'myform',
-                element: <MyForm />,
+                path: '/register',
+                // index: true,
+                element: <RegistrationForm />,
             },
             {
-                path: 'counter',
-                element: <Counter />,
+                path: '/passlogin',
+                // index: true,
+                element: <HelloPage />,
             },
         ],
     },
