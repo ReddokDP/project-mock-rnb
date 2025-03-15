@@ -1,12 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from './slices/counterSlice';
+import { LoginQuery } from '../../Query/LoginQuery'
 
 export const store = configureStore({
     reducer: {
-        counter: counterReducer,
+        [LoginQuery.reducerPath]: LoginQuery.reducer,
     },
-    devTools: true,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(LoginQuery.middleware),
 });
-
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
