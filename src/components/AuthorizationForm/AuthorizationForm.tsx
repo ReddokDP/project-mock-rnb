@@ -10,7 +10,7 @@ const AuthorizationForm = () => {
     const navigate_register = useNavigate();
     const navigate_pass = useNavigate();
     const handleRegisterClick = () => {
-        navigate_register('/register'); // Переход на форму регистрации
+        navigate_register('/register');
     };
     const [login] = useLoginMutation();
 
@@ -24,8 +24,8 @@ const AuthorizationForm = () => {
 
         try {
             const response = await login({ username, password }).unwrap();
-            if (response.status === 400 ) {
-                navigate_pass('/passlogin'); // Переход на другую страницу
+            if (response.status === 200 ) {
+                navigate_pass('/passlogin');
             }
         } catch (error) {
             console.error('Ошибка авторизации:', error);
