@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { LoginQuery } from '../../Query/LoginQuery'
+import { LoginQuery } from '../components/Query/LoginQuery';
 
 export const store = configureStore({
     reducer: {

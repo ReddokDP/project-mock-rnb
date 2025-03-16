@@ -1,7 +1,6 @@
-import React from 'react';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
-import { Header } from "./Header/Header"
+import { Header } from './Header/Header';
 
 const LayoutContainer = styled.div`
     display: flex;
@@ -17,4 +16,3 @@ export function Layout() {
         </LayoutContainer>
     );
 }
-

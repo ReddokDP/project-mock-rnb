@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import ErrorBoundary from './components/ErrorBoundary';
 import { RouterProvider } from 'react-router-dom';
-import routesConfig from '../routesConfig';
+import { routesConfig } from './routes/routesConfig';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
