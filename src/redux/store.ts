@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { LoginQuery } from '../components/Query/LoginQuery';
+import { apiService } from '../services/apiService';
 
 export const store = configureStore({
     reducer: {
-        [LoginQuery.reducerPath]: LoginQuery.reducer,
+        [apiService.reducerPath]: apiService.reducer,
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(LoginQuery.middleware),
+        getDefaultMiddleware().concat(apiService.middleware),
 });
