@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import ABeeZeeWoff from './ABeeZee-Regular.woff';
 
-const GlobalFont = createGlobalStyle`
+export const GlobalFont = createGlobalStyle`
      @font-face {
          font-family: 'ABeeZee';
          src: url(${ABeeZeeWoff}) format('woff');
@@ -13,5 +13,3 @@ const GlobalFont = createGlobalStyle`
         font-family: "ABeeZee", sans-serif;
     }
 `;
-
-export default GlobalFont;

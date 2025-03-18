@@ -26,7 +26,6 @@ export default [
             ...typescriptPlugin.configs.recommended.rules,
         },
     },
-
     {
         files: ['**/*.jsx', '**/*.tsx'],
         plugins: { react: reactPlugin, 'react-hooks': reactHooksPlugin },
@@ -34,6 +33,7 @@ export default [
             ...reactPlugin.configs.recommended.rules,
             ...reactHooksPlugin.configs.recommended.rules,
             'react/react-in-jsx-scope': 'off',
+            'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
         },
         languageOptions: {
             globals: {

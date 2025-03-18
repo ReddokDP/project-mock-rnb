@@ -1,19 +1,27 @@
 import { InputField, Button, T } from '@admiral-ds/react-ui';
 import { useNavigate } from 'react-router-dom';
-import GlobalFont from '../../assets/fonts/GlobalFont';
-import { FormWrapper, InputsWrapper } from '../WrappersS/Wrappers';
+import { InputsStyled } from '../../styles';
 import { useLoginMutation } from '../../services/apiService';
-import { routesEnum } from '../../routes/routesEnum';
+import { RoutesEnum } from '../../routes/RoutesEnum';
 import { Link } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
+import styled from 'styled-components';
 
 interface FormValues {
     username: string;
     password: string;
 }
 
+const FormStyled = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 85vh;
+`;
+
 export const AuthorizationForm = () => {
-    const navigateHome = useNavigate();
+    const navigate = useNavigate();
 
     const [login] = useLoginMutation();
 
@@ -27,61 +35,56 @@ export const AuthorizationForm = () => {
     const onSubmit = handleSubmit(async (data: FormValues) => {
         try {
             await login(data).unwrap();
-            navigateHome(routesEnum.HOME_PAGE);
+            navigate(RoutesEnum.HOME_PAGE);
         } catch (error) {
             console.error('Ошибка авторизации:', error);
         }
     });
 
     return (
-        <>
-            <GlobalFont />
-            <form onSubmit={onSubmit}>
-                <FormWrapper>
-                    <T font={'Header/H2'} as="h1">
-                        Добро пожаловать!
-                    </T>
-                    <InputsWrapper>
-                        <Controller
-                            name="username"
-                            control={control}
-                            rules={{ required: 'Введите имя пользователя' }}
-                            render={({ field, fieldState }) => (
-                                <InputField
-                                    {...field}
-                                    label="Имя пользователя"
-                                    placeholder="Введите ваш логин"
-                                    dimension="xl"
-                                    status={fieldState.error ? 'error' : undefined}
-                                    extraText={fieldState.error?.message}
-                                />
-                            )}
+        <FormStyled onSubmit={onSubmit}>
+            <T font="Header/H2" as="h1">
+                Добро пожаловать!
+            </T>
+            <InputsStyled>
+                <Controller
+                    name="username"
+                    control={control}
+                    rules={{ required: 'Введите имя пользователя' }}
+                    render={({ field, fieldState }) => (
+                        <InputField
+                            {...field}
+                            label="Имя пользователя"
+                            placeholder="Введите ваш логин"
+                            dimension="xl"
+                            status={fieldState.error ? 'error' : undefined}
+                            extraText={fieldState.error?.message}
                         />
-                        <Controller
-                            name="password"
-                            control={control}
-                            rules={{ required: 'Введите пароль' }}
-                            render={({ field, fieldState }) => (
-                                <InputField
-                                    {...field}
-                                    label="Пароль"
-                                    placeholder="Введите ваш пароль"
-                                    type="password"
-                                    dimension="xl"
-                                    status={fieldState.error ? 'error' : undefined}
-                                    extraText={fieldState.error?.message}
-                                />
-                            )}
+                    )}
+                />
+                <Controller
+                    name="password"
+                    control={control}
+                    rules={{ required: 'Введите пароль' }}
+                    render={({ field, fieldState }) => (
+                        <InputField
+                            {...field}
+                            label="Пароль"
+                            placeholder="Введите ваш пароль"
+                            type="password"
+                            dimension="xl"
+                            status={fieldState.error ? 'error' : undefined}
+                            extraText={fieldState.error?.message}
                         />
-                    </InputsWrapper>
-                    <T font={'Main/XS'} as="p">
-                        Еще нет аккаунта? <Link to={routesEnum.REGISTER}>Зарегистрироваться</Link>
-                    </T>
-                    <Button appearance="primary" type="submit">
-                        Войти
-                    </Button>
-                </FormWrapper>
-            </form>
-        </>
+                    )}
+                />
+            </InputsStyled>
+            <T font="Main/XS" as="p">
+                Еще нет аккаунта? <Link to={RoutesEnum.REGISTER}>Зарегистрироваться</Link>
+            </T>
+            <Button appearance="primary" type="submit">
+                Войти
+            </Button>
+        </FormStyled>
     );
 };

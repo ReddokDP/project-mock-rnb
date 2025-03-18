@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
-export const LayoutContainerStyled = styled.div`
+export const InputsStyled = styled.div`
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    gap: 10px;
+    width: 400px;
 `;

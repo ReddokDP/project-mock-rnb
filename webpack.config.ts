@@ -41,8 +41,8 @@ const config: webpack.Configuration = {
                 type: 'asset/resource',
                 generator: {
                     filename: 'fonts/[name][ext]',
-                }
-                }
+                },
+            },
         ],
     },
     resolve: {

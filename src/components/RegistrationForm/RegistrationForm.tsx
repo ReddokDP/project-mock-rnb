@@ -1,12 +1,11 @@
 import { InputField, Button, SelectField, Option, T } from '@admiral-ds/react-ui';
 import { Link } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
-import GlobalFont from '../../assets/fonts/GlobalFont';
-import { FormWrapper, InputsWrapper } from '../WrappersS/Wrappers';
-import { routesEnum } from '../../routes/routesEnum';
+import { useNavigate } from 'react-router-dom';
+import { InputsStyled } from '../../styles';
+import { RoutesEnum } from '../../routes/RoutesEnum';
 import { useRegistrationMutation } from '../../services/apiService';
-import { Modal } from '@admiral-ds/react-ui';
-import { useState } from 'react';
+import styled from 'styled-components';
 
 interface RegistrationFormData {
     username: string;
@@ -16,6 +15,15 @@ interface RegistrationFormData {
     role: string;
 }
 
+const FormStyled = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 85vh;
+`;
+
+
 const selectOptions = [
     { value: 'admin', label: 'Да' },
     { value: 'user', label: 'Нет' },
@@ -23,150 +31,141 @@ const selectOptions = [
 
 export const RegistrationForm = () => {
     const { handleSubmit, control, watch } = useForm<RegistrationFormData>();
+    const navigate = useNavigate();
     const [registerUser] = useRegistrationMutation();
-    const [isModalVisible, setIsModalVisible] = useState(false);
 
-    const onSubmit = handleSubmit(async (data: RegistrationFormData) => {
+    const onSubmit = handleSubmit(async ({ username, password, email, role }: RegistrationFormData) => {
         try {
             await registerUser({
-                username: data.username,
-                password: data.password,
-                email: data.email,
-                role: data.role,
-            }).unwrap();
-            setIsModalVisible(true);
+                username,
+                password,
+                email,
+                role,
+            });
+            navigate(RoutesEnum.ROOT);
         } catch (error) {
             console.error('Ошибка регистрации:', error);
         }
     });
 
-    if (isModalVisible) {
-        return (
-            <Modal onClose={() => setIsModalVisible(false)}>
-                <T font={'Header/H2'} as="h2">
-                    Успешная регистрация!
-                </T>
-                <Button appearance="primary" dimension={'l'} onClick={() => setIsModalVisible(false)}>
-                    Закрыть
-                </Button>
-            </Modal>
-        );
-    }
-
     const passwordValue = watch('password');
 
     return (
         <>
-            <GlobalFont />
-            <form onSubmit={onSubmit}>
-                <FormWrapper>
-                    <T font={'Header/H3'} as="h1">
-                        Зарегистрироваться
+            <FormStyled onSubmit={onSubmit}>
+                <T font="Header/H3" as="h1">
+                    Зарегистрироваться
+                </T>
+                <InputsStyled>
+                    <Controller
+                        name="username"
+                        control={control}
+                        rules={{ required: 'Имя пользователя обязательно' }}
+                        render={({ field, fieldState }) => (
+                            <InputField
+                                label="Имя пользователя"
+                                placeholder="Введите имя пользователя"
+                                required
+                                status={fieldState.error ? 'error' : undefined}
+                                extraText={fieldState.error?.message}
+                                {...field}
+                            />
+                        )}
+                    />
+
+                    <Controller
+                        name="email"
+                        control={control}
+                        rules={{
+                            pattern: {
+                                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                message: 'Неверный формат email',
+                            },
+                        }}
+                        render={({ field, fieldState }) => (
+                            <InputField
+                                label="Email"
+                                placeholder="Введите email"
+                                type="email"
+                                status={fieldState.error ? 'error' : undefined}
+                                extraText={fieldState.error?.message}
+                                {...field}
+                            />
+                        )}
+                    />
+
+                    <Controller
+                        name="password"
+                        control={control}
+                        rules={{
+                            required: 'Пароль обязателен',
+                            minLength: {
+                                value: 6,
+                                message: 'Пароль должен быть не менее 6 символов',
+                            },
+                        }}
+                        render={({ field, fieldState }) => (
+                            <InputField
+                                label="Пароль"
+                                placeholder="Введите пароль"
+                                type="password"
+                                status={fieldState.error ? 'error' : undefined}
+                                extraText={fieldState.error?.message}
+                                required
+                                {...field}
+                            />
+                        )}
+                    />
+
+                    <Controller
+                        name="confirmPassword"
+                        control={control}
+                        rules={{
+                            required: 'Подтверждение пароля обязательно',
+                            validate: (value) => value === passwordValue || 'Пароли не совпадают',
+                        }}
+                        render={({ field, fieldState }) => (
+                            <InputField
+                                label="Пароль ещё раз"
+                                placeholder="Повторите пароль"
+                                type="password"
+                                status={fieldState.error ? 'error' : undefined}
+                                extraText={fieldState.error?.message}
+                                {...field}
+                                required
+                            />
+                        )}
+                    />
+
+                    <Controller
+                        name="role"
+                        control={control}
+                        rules={{ required: 'Выбор обязателен' }}
+                        render={({ field, fieldState }) => (
+                            <SelectField
+                                label="Администратор?"
+                                placeholder="Выберите опцию"
+                                status={fieldState.error ? 'error' : undefined}
+                                extraText={fieldState.error?.message}
+                                required
+                                {...field}
+                            >
+                                {selectOptions.map((option) => (
+                                    <Option key={option.value} value={option.value}>
+                                        {option.label}
+                                    </Option>
+                                ))}
+                            </SelectField>
+                        )}
+                    />
+                </InputsStyled>
+                    <T font='Main/XS' as="p">
+                        Уже есть аккаунт? <Link to={RoutesEnum.ROOT}>Войти</Link>
                     </T>
-                    <InputsWrapper>
-                        <Controller
-                            name="username"
-                            control={control}
-                            rules={{ required: 'Имя пользователя обязательно' }}
-                            render={({ field, fieldState }) => (
-                                <InputField
-                                    label="Имя пользователя"
-                                    placeholder="Введите имя пользователя"
-                                    required
-                                    status={fieldState.error ? 'error' : undefined}
-                                    extraText={fieldState.error?.message}
-                                    {...field}
-                                />
-                            )}
-                        />
-
-                        <Controller
-                            name="email"
-                            control={control}
-                            rules={{
-                                pattern: {
-                                    value: /^\S+@\S+$/i,
-                                    message: 'Неверный формат email',
-                                },
-                            }}
-                            render={({ field, fieldState }) => (
-                                <InputField
-                                    label="Email"
-                                    placeholder="Введите email"
-                                    type="email"
-                                    status={fieldState.error ? 'error' : undefined}
-                                    extraText={fieldState.error?.message}
-                                    {...field}
-                                />
-                            )}
-                        />
-
-                        <Controller
-                            name="password"
-                            control={control}
-                            rules={{ required: 'Пароль обязателен' }}
-                            render={({ field, fieldState }) => (
-                                <InputField
-                                    label="Пароль"
-                                    placeholder="Введите пароль"
-                                    type="password"
-                                    status={fieldState.error ? 'error' : undefined}
-                                    extraText={fieldState.error?.message}
-                                    required
-                                    {...field}
-                                />
-                            )}
-                        />
-
-                        <Controller
-                            name="confirmPassword"
-                            control={control}
-                            rules={{
-                                required: 'Подтверждение пароля обязательно',
-                                validate: (value) => value === passwordValue || 'Пароли не совпадают',
-                            }}
-                            render={({ field, fieldState }) => (
-                                <InputField
-                                    label="Пароль ещё раз"
-                                    placeholder="Повторите пароль"
-                                    type="password"
-                                    status={fieldState.error ? 'error' : undefined}
-                                    extraText={fieldState.error?.message}
-                                    {...field}
-                                    required
-                                />
-                            )}
-                        />
-
-                        <Controller
-                            name="role"
-                            control={control}
-                            rules={{ required: 'Выбор обязателен' }}
-                            render={({ field, fieldState }) => (
-                                <SelectField
-                                    label="Администратор?"
-                                    placeholder="Выберите опцию"
-                                    status={fieldState.error ? 'error' : undefined}
-                                    extraText={fieldState.error?.message}
-                                    required
-                                    {...field}>
-                                    {selectOptions.map((option) => (
-                                        <Option key={option.value} value={option.value}>
-                                            {option.label}
-                                        </Option>
-                                    ))}
-                                </SelectField>
-                            )}
-                        />
-                    </InputsWrapper>
-                    <T font={'Main/XS'} as="p">
-                        Уже есть аккаунт? <Link to={routesEnum.ROOT}>Войти</Link>
-                    </T>
-                    <Button dimension="l" appearance="primary" type="submit">
-                        Зарегистрироваться
-                    </Button>
-                </FormWrapper>
-            </form>
+                <Button dimension="l" appearance="primary" type="submit">
+                    Зарегистрироваться
+                </Button>
+            </FormStyled>
         </>
     );
 };

@@ -1,9 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Layout } from '../components/LayoutContainer/LayoutContainer';
+import { Layout } from '../components/LayoutContainer/Layout';
 import { AuthorizationForm } from '../components/AuthorizationForm/AuthorizationForm';
 import { HomePage } from '../components/HomePage';
 import { RegistrationForm } from '../components/RegistrationForm/RegistrationForm';
-import { routesEnum } from './routesEnum';
+import { RoutesEnum } from './RoutesEnum';
 
 export const routesConfig = createBrowserRouter([
     {
@@ -15,11 +15,11 @@ export const routesConfig = createBrowserRouter([
                 element: <AuthorizationForm />,
             },
             {
-                path: routesEnum.REGISTER,
+                path: RoutesEnum.REGISTER,
                 element: <RegistrationForm />,
             },
             {
-                path: routesEnum.HOME_PAGE,
+                path: RoutesEnum.HOME_PAGE,
                 element: <HomePage />,
             },
         ],
