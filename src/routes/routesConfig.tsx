@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Layout } from '../components/LayoutContainer/Layout';
 import { AuthorizationForm } from '../components/AuthorizationForm/AuthorizationForm';
-import { HomePage } from '../components/HomePage';
+import { HomePage } from '../components/HomePage/HomePage';
 import { RegistrationForm } from '../components/RegistrationForm/RegistrationForm';
 import { RoutesEnum } from './RoutesEnum';
 

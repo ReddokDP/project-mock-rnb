@@ -1,45 +1,12 @@
 import { InputField, Button, T } from '@admiral-ds/react-ui';
-import { useNavigate } from 'react-router-dom';
 import { InputsStyled } from '../../styles';
-import { useLoginMutation } from '../../services/apiService';
 import { RoutesEnum } from '../../routes/RoutesEnum';
 import { Link } from 'react-router-dom';
-import { useForm, Controller } from 'react-hook-form';
-import styled from 'styled-components';
-
-interface FormValues {
-    username: string;
-    password: string;
-}
-
-const FormStyled = styled.form`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 85vh;
-`;
-
+import { Controller } from 'react-hook-form';
+import { FormStyled } from './AuthorizationForm.styled';
+import { useAuthorizationForm } from './useAuthorizationForm';
 export const AuthorizationForm = () => {
-    const navigate = useNavigate();
-
-    const [login] = useLoginMutation();
-
-    const { handleSubmit, control } = useForm<FormValues>({
-        defaultValues: {
-            username: '',
-            password: '',
-        },
-    });
-
-    const onSubmit = handleSubmit(async (data: FormValues) => {
-        try {
-            await login(data).unwrap();
-            navigate(RoutesEnum.HOME_PAGE);
-        } catch (error) {
-            console.error('Ошибка авторизации:', error);
-        }
-    });
+    const { control, onSubmit } = useAuthorizationForm();
 
     return (
         <FormStyled onSubmit={onSubmit}>
