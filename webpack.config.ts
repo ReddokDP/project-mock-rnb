@@ -1,6 +1,7 @@
 import path from 'path';
 import webpack from 'webpack';
 import HTMLWebpackPlugin from 'html-webpack-plugin';
+import "webpack-dev-server"
 
 const config: webpack.Configuration = {
     mode: 'development',
@@ -48,6 +49,9 @@ const config: webpack.Configuration = {
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
     },
+    devServer: {
+        historyApiFallback: true,
+    }
 };
 
 export default config;
