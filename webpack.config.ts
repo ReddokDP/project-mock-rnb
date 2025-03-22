@@ -36,6 +36,13 @@ const config: webpack.Configuration = {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader'],
             },
+            {
+                test: /\.(woff|woff2|ttf|eot)$/,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'fonts/[name][ext]',
+                },
+            },
         ],
     },
     resolve: {
