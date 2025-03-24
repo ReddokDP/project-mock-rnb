@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const FormStyled = styled.form`
     display: flex;
@@ -6,4 +6,23 @@ export const FormStyled = styled.form`
     align-items: center;
     justify-content: center;
     min-height: 85vh;
+`;
+
+const spin = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const SpinnerLoader = styled.div`
+    position: fixed;
+    width: 80px;
+    height: 80px;
+    border: 10px solid #f3f3f3;
+    border-top: 10px solid #0123ff;
+    border-radius: 50%;
+    animation: ${spin} 1s linear infinite;
 `;

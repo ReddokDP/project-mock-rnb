@@ -3,10 +3,10 @@ import { InputsStyled } from '../../styles';
 import { RoutesEnum } from '../../routes/RoutesEnum';
 import { Link } from 'react-router-dom';
 import { Controller } from 'react-hook-form';
-import { FormStyled } from './AuthorizationForm.styled';
+import { FormStyled, SpinnerLoader } from './AuthorizationForm.styled';
 import { useAuthorizationForm } from './useAuthorizationForm';
 export const AuthorizationForm = () => {
-    const { control, onSubmit } = useAuthorizationForm();
+    const { control, onSubmit, isLoading } = useAuthorizationForm();
 
     return (
         <FormStyled onSubmit={onSubmit}>
@@ -52,6 +52,7 @@ export const AuthorizationForm = () => {
             <Button appearance="primary" type="submit">
                 Войти
             </Button>
+            {isLoading && <SpinnerLoader />}
         </FormStyled>
     );
 };

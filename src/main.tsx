@@ -8,8 +8,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import { RouterProvider } from 'react-router-dom';
 import { routesConfig } from './routes/routesConfig';
 import { GlobalFont } from './assets/fonts/GlobalFont';
-import { PersistGate } from 'redux-persist/integration/react';
-import { store, persistor } from './redux/store';
+import { store } from './redux/store';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <StrictMode>
@@ -19,7 +18,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 <ErrorBoundary>
                     <Provider store={store}>
                         <RouterProvider router={routesConfig} />
-                        <PersistGate loading={null} persistor={persistor} />
                     </Provider>
                 </ErrorBoundary>
             </DropdownProvider>
