@@ -20,7 +20,16 @@ export const apiService = createApi({
                 body: credentials,
             }),
         }),
+        logout: builder.mutation({
+            query: () => ({
+                url: '/auth/logout',
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json'
+                }
+            }),
+        }),
     }),
 });
 
-export const { useLoginMutation, useRegistrationMutation } = apiService;
+export const { useLoginMutation, useRegistrationMutation, useLogoutMutation  } = apiService;

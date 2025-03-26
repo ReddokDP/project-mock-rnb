@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import { Button } from '@admiral-ds/react-ui';
 
 export const FormStyled = styled.form`
     display: flex;
@@ -25,4 +26,12 @@ export const SpinnerLoader = styled.div`
     border-top: 10px solid #0123ff;
     border-radius: 50%;
     animation: ${spin} 1s linear infinite;
+`;
+
+export const ButtonLogOut = styled(Button)`
+    position: absolute;
+    top: 75px;
+    margin-right: 50px;
+    width: 80px;
+    height: 20px;
 `;
