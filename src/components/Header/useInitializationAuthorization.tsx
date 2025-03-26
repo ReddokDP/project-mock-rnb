@@ -7,9 +7,8 @@ export const useInitializationAuthorization = () => {
 
     useEffect(() => {
         const user = localStorage.getItem('user');
-        const token = localStorage.getItem('token');
 
-        if (token && user) {
+        if (user) {
             dispatch(setCredentials({ user: { username: (JSON.parse(user)) } }));
         }
 
