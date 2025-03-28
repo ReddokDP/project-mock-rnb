@@ -1,16 +1,11 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
-import { BodyGlobal } from '../../styles';
 import { GridContainer, CardContainer, PathTitle } from './HomePage.styled';
 import { T } from '@admiral-ds/react-ui';
+import { cardsData } from './cardsData';
 
 export const HomePage = () => {
 
-    const cardsData = useSelector((state:RootState) => state.cards.cardsData); //
-
     return (
         <>
-            <BodyGlobal />
             <PathTitle font="Body/Body 2 Long" as="h2">Налоги</PathTitle>
             <GridContainer>
                 {cardsData.map((card) => (

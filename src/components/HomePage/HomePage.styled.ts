@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { T } from '@admiral-ds/react-ui';
+import { LIGHT_THEME } from '@admiral-ds/react-ui';
 
 export const CardContainer = styled.div`
-    border: 1px solid #D5D8DE;
+    border: 1px solid ${LIGHT_THEME.color['Neutral/Neutral 20']};
     border-radius: 10px;
     padding: 16px;
-    background-color: #ffffff;
+    color: ${LIGHT_THEME.color['Neutral/Neutral 00']} 
     cursor: pointer;
     height: 90px;
 `;
