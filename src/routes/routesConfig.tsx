@@ -4,6 +4,7 @@ import { AuthorizationForm } from '../components/AuthorizationForm/Authorization
 import { HomePage } from '../components/HomePage/HomePage';
 import { RegistrationForm } from '../components/RegistrationForm/RegistrationForm';
 import { RoutesEnum } from './RoutesEnum';
+import { Expenses } from '../components/Expenses/Expenses';
 
 export const routesConfig = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ export const routesConfig = createBrowserRouter([
             {
                 path: RoutesEnum.HOME_PAGE,
                 element: <HomePage />,
+            },
+            {
+                path: RoutesEnum.EXPENSES,
+                element: <Expenses />,
             },
         ],
     },
