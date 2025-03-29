@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import { Button } from '@admiral-ds/react-ui';
+import { LIGHT_THEME } from '@admiral-ds/react-ui';
 
 export const FormStyled = styled.form`
     display: flex;
@@ -22,8 +23,8 @@ export const SpinnerLoader = styled.div`
     position: fixed;
     width: 80px;
     height: 80px;
-    border: 10px solid #f3f3f3;
-    border-top: 10px solid #0123ff;
+    border: 10px solid ${LIGHT_THEME.color['Neutral/Neutral 00']};
+    border-top: 10px solid ${LIGHT_THEME.color['Primary/Primary 60 Main']};
     border-radius: 50%;
     animation: ${spin} 1s linear infinite;
 `;
