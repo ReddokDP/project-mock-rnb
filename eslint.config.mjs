@@ -24,6 +24,13 @@ export default [
         plugins: { '@typescript-eslint': typescriptPlugin },
         rules: {
             ...typescriptPlugin.configs.recommended.rules,
+            '@typescript-eslint/type-annotation-spacing': [
+                'error',
+                {
+                    before: false,
+                    after: true,
+                },
+            ],
         },
     },
     {
