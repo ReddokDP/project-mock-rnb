@@ -1,8 +1,8 @@
-import { BodyGlobal } from '../../styles';
-import { ContainerCards, CardsContainer, PathPage } from './HomePage.styled';
+import { BodyGlobal } from '../../shared/styled';
+import { ContainerCards, CardsContainer, PathPage } from '../styled/HomePage.styled';
 import { T } from '@admiral-ds/react-ui';
-import { cardsData } from './cardsData';
-import { useTransitionCards } from './useTransitionCards';
+import { cardsData } from '../data/cardsData';
+import { useTransitionCards } from '../hooks/useTransitionCards';
 
 export const HomePage = () => {
     const { handleCardClick } = useTransitionCards();

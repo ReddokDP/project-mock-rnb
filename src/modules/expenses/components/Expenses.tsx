@@ -4,10 +4,10 @@ import {
     ContainerInfo,
     InfoMessage,
     IconInfoSolid,
-} from './Expenses.styled';
-import { ActionBar } from '../ActionBar/ActionBar';
+} from '../styled/Expenses.styled';
+import { ActionBar } from '../../shared/components/ActionBar';
 import { Button, T } from '@admiral-ds/react-ui';
-import {MainContainer} from './Expenses.styled';
+import {MainContainer} from '../styled/Expenses.styled';
 export const Expenses = () => {
     return (
         <MainContainer>

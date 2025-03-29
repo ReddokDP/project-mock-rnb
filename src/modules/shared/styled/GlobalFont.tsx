@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import ABeeZeeWoff from './ABeeZee-Regular.woff';
+import ABeeZeeWoff from '../../../assets/fonts/ABeeZee-Regular.woff';
 
 export const GlobalFont = createGlobalStyle`
      @font-face {

@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { setCredentials } from '../../redux/slice/authSlice';
+import { setCredentials } from '../../auth/slice/authSlice';
 
 export const useInitializationAuthorization = () => {
     const dispatch = useDispatch();

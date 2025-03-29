@@ -1,10 +1,10 @@
 import { InputField, Button, SelectField, Option, T } from '@admiral-ds/react-ui';
 import { Link } from 'react-router-dom';
 import { Controller } from 'react-hook-form';
-import { InputsStyled } from '../../styles';
-import { RoutesEnum } from '../../routes/RoutesEnum';
-import { FormStyled } from './RegistrationForm.styled';
-import { useRegistrationForm } from './useRegistrationForm';
+import { InputsStyled } from '../../shared/styled';
+import { RoutesEnum } from '../../../routes/RoutesEnum';
+import { FormStyled } from '../styled/RegistrationForm.styled';
+import { useRegistrationForm } from '../hooks/useRegistrationForm';
 
 const selectOptions = [
     { value: 'admin', label: 'Да' },

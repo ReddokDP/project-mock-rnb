@@ -1,10 +1,10 @@
 import { InputField, Button, T } from '@admiral-ds/react-ui';
-import { InputsStyled } from '../../styles';
-import { RoutesEnum } from '../../routes/RoutesEnum';
+import { InputsStyled } from '../../shared/styled';
+import { RoutesEnum } from '../../../routes/RoutesEnum';
 import { Link } from 'react-router-dom';
 import { Controller } from 'react-hook-form';
-import { FormStyled, SpinnerLoader } from './AuthorizationForm.styled';
-import { useAuthorizationForm } from './useAuthorizationForm';
+import { FormStyled, SpinnerLoader } from '../styled/AuthorizationForm.styled';
+import { useAuthorizationForm } from '../hooks/useAuthorizationForm';
 export const AuthorizationForm = () => {
     const { control, onSubmit, isLoading } = useAuthorizationForm();
 

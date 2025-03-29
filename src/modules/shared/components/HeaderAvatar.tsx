@@ -1,12 +1,12 @@
 import { Avatar, Button } from '@admiral-ds/react-ui';
-import { HeaderAvatarStyled } from './HeaderAvatar.styled';
+import { HeaderAvatarStyled } from '../styled/HeaderAvatar.styled';
 import { LIGHT_THEME } from '@admiral-ds/react-ui';
-import { useInitializationAuthorization } from './useInitializationAuthorization';
-import { useLogOut } from '../AuthorizationForm/useLogOut';
-import { setShowLogout } from '../../redux/slice/uiSlice';
-import { ButtonLogOut } from '../AuthorizationForm/AuthorizationForm.styled';
+import { useInitializationAuthorization } from '../hooks/useInitializationAuthorization';
+import { useLogOut } from '../../auth/hooks/useLogOut';
+import { setShowLogout } from '../slice/uiSlice';
+import { ButtonLogOut } from '../../auth/styled/AuthorizationForm.styled';
 import { SystemSmallArrowDownOutline } from '@admiral-ds/icons';
-import { useShowLogOutButton } from './useShowLogOutButton';
+import { useShowLogOutButton } from '../hooks/useShowLogOutButton';
 
 export const HeaderAvatar = () => {
     useInitializationAuthorization();

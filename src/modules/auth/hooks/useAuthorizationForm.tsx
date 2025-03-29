@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import { useLoginMutation } from '../../services/apiService';
-import { RoutesEnum } from '../../routes/RoutesEnum';
+import { useLoginMutation } from '../services/apiService';
+import { RoutesEnum } from '../../../routes/RoutesEnum';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { setCredentials } from '../../redux/slice/authSlice';
+import { setCredentials } from '../slice/authSlice';
 
 interface FormValues {
     username: string;
