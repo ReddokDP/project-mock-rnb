@@ -1,7 +1,7 @@
 import path from 'path';
 import webpack from 'webpack';
 import HTMLWebpackPlugin from 'html-webpack-plugin';
-import "webpack-dev-server"
+import 'webpack-dev-server';
 
 const config: webpack.Configuration = {
     mode: 'development',
@@ -19,6 +19,12 @@ const config: webpack.Configuration = {
     ],
     module: {
         rules: [
+            {
+                test: /\.svg$/i,
+                issuer: /\.[jt]sx?$/,
+                resourceQuery: /react/,
+                use: [{ loader: '@svgr/webpack', options: { dimensions: false, svgProps: { focusable: '{false}' } } }],
+            },
             {
                 test: /\.svg$/i,
                 issuer: /\.[jt]sx?$/,
