@@ -3,7 +3,7 @@ import { useLoginMutation } from '../services/apiService';
 import { RoutesEnum } from '../../../routes/RoutesEnum';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { setCredentials } from '../slice/authSlice';
+import { setUser } from '../slice/authSlice';
 
 interface FormValues {
     username: string;
@@ -20,7 +20,7 @@ export const useAuthorizationForm = () => {
         try {
             const response = await login(data).unwrap();
             localStorage.setItem('user', JSON.stringify(response.user.username))
-            dispatch(setCredentials({user: response.user }));
+            dispatch(setUser({user: response.user }));
             navigate(RoutesEnum.HOME_PAGE);
         } catch (error) {
             console.error('Ошибка авторизации:', error);

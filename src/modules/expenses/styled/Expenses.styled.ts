@@ -3,12 +3,14 @@ import { LIGHT_THEME } from '@admiral-ds/react-ui';
 
 export const MainContainer = styled.div`
     display: flex;
+    flex: 1;
     flex-direction: column;
-    padding: 0 20px;
-    min-height: 100vh;
+    padding: 0 20px 20px 20px;
+    box-sizing: border-box;
 `
 export const Container = styled.div`
     display: flex;
+    flex: 1;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -20,11 +22,11 @@ export const IconInfoSolid = styled.image`
 `;
 
 export const ContainerInfo = styled.div`
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 85vh;
     width: 100%;
     background-color: ${LIGHT_THEME.color['Neutral/Neutral 00']};
     border-radius: 10px;

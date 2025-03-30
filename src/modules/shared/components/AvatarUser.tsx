@@ -1,29 +1,27 @@
-import { Avatar, Button } from '@admiral-ds/react-ui';
-import { HeaderAvatarStyled } from '../styled/HeaderAvatar.styled';
+import { Avatar } from '@admiral-ds/react-ui';
+import { ButtonExit, AvatarContainer } from '../styled/AvatarUser.styled';
 import { LIGHT_THEME } from '@admiral-ds/react-ui';
-import { useInitializationAuthorization } from '../hooks/useInitializationAuthorization';
 import { useLogOut } from '../../auth/hooks/useLogOut';
 import { setShowLogout } from '../slice/uiSlice';
 import { ButtonLogOut } from '../../auth/styled/AuthorizationForm.styled';
-import { SystemSmallArrowDownOutline } from '@admiral-ds/icons';
+import { IconButtonExit } from '../styled/AvatarUser.styled';
 import { useShowLogOutButton } from '../hooks/useShowLogOutButton';
 
-export const HeaderAvatar = () => {
-    useInitializationAuthorization();
+export const AvatarUser = () => {
     const { handleLogout } = useLogOut();
     const { user, showLogout, dispatch} = useShowLogOutButton()
 
     return (
-        <HeaderAvatarStyled>
+        <AvatarContainer>
             {user && (
                 <>
                     <Avatar
                         userName={user.username}
-                        dimension="l"
+                        dimension="m"
                         appearance="neutral2"
                         status={LIGHT_THEME.color['Primary/Primary 60 Main']}
                     />
-                    <Button appearance="ghost" dimension="m" iconStart={SystemSmallArrowDownOutline()} displayAsSquare onClick={() => dispatch(setShowLogout(!showLogout))} />
+                    <ButtonExit onClick={() => dispatch(setShowLogout(!showLogout))}><IconButtonExit /></ButtonExit>
                     {showLogout && (
                         <ButtonLogOut appearance="primary" dimension="s" type="submit" onClick={handleLogout}>
                             Выйти
@@ -31,6 +29,6 @@ export const HeaderAvatar = () => {
                     )}
                 </>
             )}
-        </HeaderAvatarStyled>
+        </AvatarContainer>
     );
 };

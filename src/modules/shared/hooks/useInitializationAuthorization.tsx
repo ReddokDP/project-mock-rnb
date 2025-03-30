@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { setCredentials } from '../../auth/slice/authSlice';
+import { setUser } from '../../auth/slice/authSlice';
 
 export const useInitializationAuthorization = () => {
     const dispatch = useDispatch();
@@ -9,7 +9,7 @@ export const useInitializationAuthorization = () => {
         const user = localStorage.getItem('user');
 
         if (user) {
-            dispatch(setCredentials({ user: { username: (JSON.parse(user)) } }));
+            dispatch(setUser({ user: { username: (JSON.parse(user)) } }));
         }
 
     }, [dispatch]);

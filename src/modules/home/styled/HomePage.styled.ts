@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { T } from '@admiral-ds/react-ui';
 import { LIGHT_THEME } from '@admiral-ds/react-ui';
 
-export const CardsContainer = styled.div`
+export const Card = styled.div`
     border: 1px solid ${LIGHT_THEME.color['Neutral/Neutral 20']};
     border-radius: 10px;
     padding: 16px;

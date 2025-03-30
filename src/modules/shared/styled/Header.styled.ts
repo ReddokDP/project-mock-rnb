@@ -3,8 +3,9 @@ import { LIGHT_THEME } from '@admiral-ds/react-ui';
 
 export const HeaderStyled = styled.header`
     display: flex;
+    height: 55px;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
+    padding: 0 20px;
     background-color: ${LIGHT_THEME.color['Neutral/Neutral 00']};
 `;
