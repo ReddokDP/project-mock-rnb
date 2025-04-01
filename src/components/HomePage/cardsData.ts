@@ -1,11 +1,14 @@
+import { RoutesEnum } from '../../routes/RoutesEnum';
+
 interface Card {
     id: number;
     title: string;
+    path?: string;
 }
 
 export const cardsData: Card[] = [
     { id: 1, title: 'Отчёты' },
-    { id: 2, title: 'Затраты' },
+    { id: 2, title: 'Затраты', path: RoutesEnum.EXPENSES },
     { id: 3, title: 'Задания ФР/НОБ/Переквитовки' },
     { id: 4, title: 'Ручной возврат налога' },
     { id: 5, title: 'Учет данных по ИИС по переводу от другого брокера' },
