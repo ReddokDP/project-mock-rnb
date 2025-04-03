@@ -3,13 +3,16 @@ import { RoutesEnum } from '../../../routes/RoutesEnum';
 import { Button } from '@admiral-ds/react-ui';
 import { SystemArrowLeftOutline, SystemFilterOutline, SystemSettingsOutline } from '@admiral-ds/icons';
 import { ActionBarContainerButton, ActionBarPath, ContainerBar, PathPage } from '../styled/ActionBar.styled';
+import { useOpenModalFilter } from '../hooks/useOpenModalFilter';
 
 interface ActionBarProps {
     showFilterButton?: boolean;
     showSettingsButton?: boolean;
 }
 
-export const ActionBar = ({ showFilterButton = true, showSettingsButton = true}: ActionBarProps) => {
+export const ActionBar = ({ showFilterButton = true, showSettingsButton = true }: ActionBarProps) => {
+    const { handleOpenModal } = useOpenModalFilter();
+
     return (
         <ContainerBar>
             <ActionBarPath>
@@ -24,7 +27,11 @@ export const ActionBar = ({ showFilterButton = true, showSettingsButton = true}:
             </ActionBarPath>
             <ActionBarContainerButton>
                 {showFilterButton && (
-                    <Button dimension="s" appearance="secondary" iconStart={SystemFilterOutline()}>
+                    <Button
+                        dimension="s"
+                        appearance="secondary"
+                        iconStart={SystemFilterOutline()}
+                        onClick={handleOpenModal}>
                         Фильтр
                     </Button>
                 )}
