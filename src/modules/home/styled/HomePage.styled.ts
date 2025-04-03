@@ -23,6 +23,6 @@ export const ContainerCards = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 15px;
-    grid-row-gap: 15px;
+    grid-auto-rows: min(90px, auto);
+    gap: 15px;
 `;

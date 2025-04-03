@@ -5,6 +5,7 @@ import { HomePage } from '../modules/home/components/HomePage';
 import { RegistrationForm } from '../modules/auth/components/RegistrationForm';
 import { RoutesEnum } from './RoutesEnum';
 import { Expenses } from '../modules/expenses/components/Expenses';
+import { ProtectedRoute } from './component/ProtectedRoute';
 
 export const routesConfig = createBrowserRouter([
     {
@@ -12,7 +13,7 @@ export const routesConfig = createBrowserRouter([
         element: <Layout />,
         children: [
             {
-                index: true,
+                path: '/login',
                 element: <AuthorizationForm />,
             },
             {
@@ -20,12 +21,18 @@ export const routesConfig = createBrowserRouter([
                 element: <RegistrationForm />,
             },
             {
-                path: RoutesEnum.HOME_PAGE,
-                element: <HomePage />,
-            },
-            {
-                path: RoutesEnum.EXPENSES,
-                element: <Expenses />,
+                path: '/',
+                element: <ProtectedRoute />,
+                children: [
+                    {
+                        path: RoutesEnum.HOME_PAGE,
+                        element: <HomePage />,
+                    },
+                    {
+                        path: RoutesEnum.EXPENSES,
+                        element: <Expenses />,
+                    },
+                ],
             },
         ],
     },

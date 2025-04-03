@@ -1,4 +1,3 @@
-import { BodyGlobal } from '../../shared/styled';
 import { ContainerCards, Card, PathPage } from '../styled/HomePage.styled';
 import { T } from '@admiral-ds/react-ui';
 import { cardsData } from '../data/cardsData';
@@ -9,7 +8,6 @@ export const HomePage = () => {
 
     return (
         <>
-            <BodyGlobal />
             <PathPage font="Body/Body 2 Long" as="h2">
                 Налоги
             </PathPage>

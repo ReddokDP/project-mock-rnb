@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import ErrorBoundary from './modules/shared/components/ErrorBoundary';
 import { RouterProvider } from 'react-router-dom';
 import { routesConfig } from './routes/routesConfig';
-import { GlobalFont } from './modules/shared/styled/GlobalFont';
+import { GlobalFont } from './app/GlobalFont';
 import { store } from './redux/store';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
