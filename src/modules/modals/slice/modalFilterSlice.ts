@@ -10,12 +10,10 @@ export interface ModalData {
 }
 
 interface ModalState {
-    isOpen: boolean;
     modalData: ModalData | null;
 }
 
 const initialState: ModalState = {
-    isOpen: false,
     modalData: null,
 };
 
@@ -23,16 +21,11 @@ const modalFilterSlice = createSlice({
     name: 'modal',
     initialState,
     reducers: {
-        openModalFilter: (state, action: PayloadAction<ModalData | undefined>) => {
-            state.isOpen = true;
+        setDataFilter: (state, action: PayloadAction<ModalData | undefined>) => {
             state.modalData = action.payload || null;
-        },
-        closeModalFilter: (state) => {
-            state.isOpen = false;
-            state.modalData = null;
         },
     },
 });
 
-export const { openModalFilter, closeModalFilter } = modalFilterSlice.actions;
+export const { setDataFilter } = modalFilterSlice.actions;
 export default modalFilterSlice.reducer;

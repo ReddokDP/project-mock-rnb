@@ -3,11 +3,11 @@ import { Container, ContainerInfo, InfoMessage, IconInfoSolid } from '../styled/
 import { ActionBar } from '../../shared/components/ActionBar';
 import { Button, T } from '@admiral-ds/react-ui';
 import { MainContainer } from '../styled/Expenses.styled';
-import { useOpenModalFilter} from '../../shared/hooks/useOpenModalFilter';
 import { ModalFilter } from '../../modals/component/ModalFilter';
+import { useShowFilterModal } from '../../modals/hooks/useShowFilterModal';
 
 export const Expenses = () => {
-    const {handleOpenModal} = useOpenModalFilter();
+    const { isOpen, openModal, closeModal } = useShowFilterModal();
 
     return (
         <MainContainer>
@@ -24,12 +24,12 @@ export const Expenses = () => {
                         dimension="s"
                         appearance="secondary"
                         iconStart={SystemFilterOutline()}
-                        onClick={handleOpenModal}>
+                        onClick={openModal}>
                         Фильтр
                     </Button>
-                    <ModalFilter />
                 </ContainerInfo>
             </Container>
+            {isOpen && (<ModalFilter onClose={closeModal}/>)}
         </MainContainer>
     );
 };

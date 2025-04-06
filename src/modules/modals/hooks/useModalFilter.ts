@@ -1,19 +1,22 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { closeModalFilter } from '../slice/modalFilterSlice';
+import { useSelector } from 'react-redux';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { RootState } from '../../../redux/store';
 import { ModalData } from '../slice/modalFilterSlice';
+import { useShowFilterModal } from './useShowFilterModal';
 
 interface StatusOption {
     id: string;
     value: string;
 }
 
-export const useModalFilter = () => {
-    const dispatch = useDispatch();
-    const { isOpen, modalData } = useSelector((state: RootState) => state.modal);
+const selectorModalData = (state: RootState) => state.modal.modalData;
 
-    const { register, handleSubmit, reset } = useForm<ModalData>({
+export const useModalFilter = () => {
+    const { closeModal } = useShowFilterModal();
+
+    const modalData = useSelector(selectorModalData);
+
+    const { control, handleSubmit, reset } = useForm<ModalData>({
         defaultValues: modalData || {
             customerId: null,
             contractNumber: null,
@@ -25,9 +28,8 @@ export const useModalFilter = () => {
         mode: 'onChange',
     });
 
-    const onSubmit: SubmitHandler<ModalData> = (data) => {
-        console.log(data);
-        dispatch(closeModalFilter());
+    const onSubmit: SubmitHandler<ModalData> = () => {
+        closeModal();
         reset();
     };
 
@@ -49,13 +51,11 @@ export const useModalFilter = () => {
     ];
 
     return {
-        isOpen,
         modalData,
-        register,
+        control,
         handleSubmit,
         onSubmit,
         handleReset,
         statusOptions,
-        dispatch,
     };
 };

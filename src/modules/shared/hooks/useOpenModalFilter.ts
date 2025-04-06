@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { openModalFilter } from '../../modals/slice/modalFilterSlice';
+import { setDataFilter } from '../../modals/slice/modalFilterSlice';
 import { ModalData } from '../../modals/slice/modalFilterSlice';
 
 export const useOpenModalFilter = () => {
@@ -13,10 +13,8 @@ export const useOpenModalFilter = () => {
             endDate: null,
             status: '',
         };
-
-        dispatch(openModalFilter(initialData));
+        dispatch(setDataFilter(initialData));
     };
-
     return {
         handleOpenModal
     }
