@@ -8,20 +8,14 @@ import {
 import { useModalFilter } from '../hooks/useModalFilter';
 import { Controller } from 'react-hook-form';
 
-interface ModalFilterProps {
-    onClose: () => void;
-}
-
-export const ModalFilter = ({ onClose }:ModalFilterProps) => {
-    const { control, handleSubmit, onSubmit, handleReset, statusOptions } =
+export const ModalFilter = () => {
+    const { onSubmit, handleReset, handleCloseModal, control, statusOptions } =
         useModalFilter();
 
     return (
-        <ModalContentCustom
-            onClose={onClose}
-            closeOnOutsideClick={true}>
+        <ModalContentCustom onClose={handleCloseModal} closeOnOutsideClick={true}>
             <ModalTitleStyleCustom>Фильтр</ModalTitleStyleCustom>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={onSubmit}>
                 <ModalСontainerInputs>
                     <Controller
                         name="customerId"
@@ -117,7 +111,7 @@ export const ModalFilter = ({ onClose }:ModalFilterProps) => {
                     <Button type="submit" dimension="s" appearance="primary">
                         Применить
                     </Button>
-                    <Button dimension="s" appearance="secondary" onClick={onClose}>
+                    <Button dimension="s" appearance="secondary" onClick={handleCloseModal}>
                         Отмена
                     </Button>
                     <Button dimension="s" appearance="secondary" onClick={handleReset}>

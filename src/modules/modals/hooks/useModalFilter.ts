@@ -1,8 +1,8 @@
-import { useSelector } from 'react-redux';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeModalFilter, openModalFilter, setModalData } from '../slice/modalFilterSlice';
+import { useForm } from 'react-hook-form';
 import { RootState } from '../../../redux/store';
 import { ModalData } from '../slice/modalFilterSlice';
-import { useShowFilterModal } from './useShowFilterModal';
 
 interface StatusOption {
     id: string;
@@ -10,13 +10,15 @@ interface StatusOption {
 }
 
 const selectorModalData = (state: RootState) => state.modal.modalData;
+const selectorIsOpen = (state: RootState) => state.modal.isOpen;
 
 export const useModalFilter = () => {
-    const { closeModal } = useShowFilterModal();
+    const dispatch = useDispatch();
 
+    const isOpen = useSelector(selectorIsOpen);
     const modalData = useSelector(selectorModalData);
 
-    const { control, handleSubmit, reset } = useForm<ModalData>({
+    const { control, handleSubmit, reset, getValues } = useForm<ModalData>({
         defaultValues: modalData || {
             customerId: null,
             contractNumber: null,
@@ -28,12 +30,33 @@ export const useModalFilter = () => {
         mode: 'onChange',
     });
 
-    const onSubmit: SubmitHandler<ModalData> = () => {
-        closeModal();
-        reset();
+    const onSubmit = handleSubmit(() => {
+        const initialData: ModalData = {
+            customerId: null,
+            contractNumber: null,
+            asset: '',
+            startDate: null,
+            endDate: null,
+            status: '',
+        };
+        dispatch(setModalData(initialData))
+        dispatch(closeModalFilter());
+    });
+
+    const handleOpenModal = () => {
+        dispatch(openModalFilter());
+        if (modalData) {
+            reset(modalData);
+        }
     };
 
-    const handleReset = (): void => {
+    const handleCloseModal = () => {
+        const currentData = getValues();
+        dispatch(setModalData(currentData));
+        dispatch(closeModalFilter());
+    };
+
+    const handleReset = () => {
         reset({
             customerId: null,
             contractNumber: null,
@@ -51,9 +74,11 @@ export const useModalFilter = () => {
     ];
 
     return {
+        isOpen,
+        handleOpenModal,
+        handleCloseModal,
         modalData,
         control,
-        handleSubmit,
         onSubmit,
         handleReset,
         statusOptions,

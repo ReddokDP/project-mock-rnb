@@ -4,10 +4,10 @@ import { ActionBar } from '../../shared/components/ActionBar';
 import { Button, T } from '@admiral-ds/react-ui';
 import { MainContainer } from '../styled/Expenses.styled';
 import { ModalFilter } from '../../modals/component/ModalFilter';
-import { useShowFilterModal } from '../../modals/hooks/useShowFilterModal';
+import { useModalFilter } from '../../modals/hooks/useModalFilter';
 
 export const Expenses = () => {
-    const { isOpen, openModal, closeModal } = useShowFilterModal();
+    const { handleOpenModal, isOpen } = useModalFilter();
 
     return (
         <MainContainer>
@@ -24,12 +24,12 @@ export const Expenses = () => {
                         dimension="s"
                         appearance="secondary"
                         iconStart={SystemFilterOutline()}
-                        onClick={openModal}>
+                        onClick={handleOpenModal}>
                         Фильтр
                     </Button>
                 </ContainerInfo>
             </Container>
-            {isOpen && (<ModalFilter onClose={closeModal}/>)}
+            {isOpen && (<ModalFilter/>)}
         </MainContainer>
     );
 };
