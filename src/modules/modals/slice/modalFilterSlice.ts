@@ -1,22 +1,22 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface ModalData {
-    customerId: number | null;
-    contractNumber: number | null;
+    customerId: string;
+    contractNumber: string;
     asset: string;
-    startDate: number | null;
-    endDate: number | null;
+    startDate: string;
+    endDate: string;
     status: string;
 }
 
 interface ModalState {
     isOpen: boolean;
-    modalData: ModalData | null;
+    modalData: ModalData | undefined;
 }
 
 const initialState: ModalState = {
     isOpen: false,
-    modalData: null,
+    modalData: undefined,
 };
 
 const modalFilterSlice = createSlice({
@@ -33,7 +33,12 @@ const modalFilterSlice = createSlice({
             state.modalData = action.payload;
         },
     },
+    selectors: {
+        selectorModalData: (state: ModalState) => state.modalData,
+        selectorIsOpen: (state: ModalState) => state.isOpen,
+    },
 });
 
 export const { openModalFilter, closeModalFilter, setModalData } = modalFilterSlice.actions;
+export const { selectorModalData, selectorIsOpen} = modalFilterSlice.selectors
 export default modalFilterSlice.reducer;

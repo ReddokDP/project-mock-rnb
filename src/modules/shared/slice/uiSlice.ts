@@ -16,7 +16,11 @@ const uiSlice = createSlice({
             state.showLogout = action.payload;
         },
     },
+    selectors: {
+        selectLogOut: (state: UIState) => state.showLogout,
+    }
 });
 
 export const { setShowLogout } = uiSlice.actions;
+export const { selectLogOut } = uiSlice.selectors
 export default uiSlice.reducer;

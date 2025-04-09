@@ -1,17 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../redux/store';
 import { useNavigate } from 'react-router-dom';
 import { useLogoutMutation } from '../services/apiService';
-import { RoutesEnum } from '../../../routes/RoutesEnum';
+import { RoutesEnum } from '../../../app/routes/RoutesEnum';
 import { logOut as logoutAction } from '../slice/authSlice';
-import { setShowLogout } from '../../shared/slice/uiSlice';
+import { setShowLogout, selectLogOut } from '../../shared/slice/uiSlice';
+import { selectUser } from '../slice/authSlice'
 
 export const useAuthLogOut = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const user = useSelector((state: RootState) => state.auth.user);
-    const showLogout = useSelector((state: RootState) => state.ui.showLogout);
+    const user = useSelector(selectUser);
+    const showLogout = useSelector(selectLogOut);
 
     const [logout, { isLoading }] = useLogoutMutation();
 

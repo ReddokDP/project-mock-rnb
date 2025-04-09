@@ -1,14 +1,15 @@
 import React from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { selectUser } from '../../../modules/auth/slice/authSlice';
 
 interface ProtectedRouteProps {
     redirectPath?: string;
 }
 
 export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ redirectPath = '/login' }) => {
-    const user = useSelector((state: RootState) => state.auth.user);
+    const user = useSelector(selectUser);
+
     const currentLocation = useLocation();
 
     if (!user) {

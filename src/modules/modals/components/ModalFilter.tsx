@@ -1,7 +1,7 @@
 import { Button, InputField, Option, SelectField } from '@admiral-ds/react-ui';
 import {
     ModalContentCustom,
-    ModalСontainerInputs,
+    ModalContainerInputs,
     ModalTitleStyleCustom,
     ModalButtonPanelCustom,
 } from '../styled/ModalFilter.styled';
@@ -16,7 +16,7 @@ export const ModalFilter = () => {
         <ModalContentCustom onClose={handleCloseModal} closeOnOutsideClick={true}>
             <ModalTitleStyleCustom>Фильтр</ModalTitleStyleCustom>
             <form onSubmit={onSubmit}>
-                <ModalСontainerInputs>
+                <ModalContainerInputs>
                     <Controller
                         name="customerId"
                         control={control}
@@ -27,7 +27,6 @@ export const ModalFilter = () => {
                                 placeholder="Введите субсчёт клиента"
                                 dimension="s"
                                 type="number"
-                                value={field.value ?? ''}
                             />
                         )}
                     />
@@ -41,7 +40,6 @@ export const ModalFilter = () => {
                                 placeholder="Введите номер договора"
                                 dimension="s"
                                 type="number"
-                                value={field.value ?? ''}
                             />
                         )}
                     />
@@ -55,7 +53,6 @@ export const ModalFilter = () => {
                                 placeholder="Введите актив"
                                 type="string"
                                 dimension="s"
-                                value={field.value ?? ''}
                             />
                         )}
                     />
@@ -72,7 +69,6 @@ export const ModalFilter = () => {
                                 status={fieldState.error ? 'error' : undefined}
                                 type="date"
                                 dimension="s"
-                                value={field.value ?? ''}
                             />
                         )}
                     />
@@ -89,7 +85,6 @@ export const ModalFilter = () => {
                                 status={fieldState.error ? 'error' : undefined}
                                 dimension="s"
                                 type="date"
-                                value={field.value ?? ''}
                             />
                         )}
                     />
@@ -106,7 +101,7 @@ export const ModalFilter = () => {
                             </SelectField>
                         )}
                     />
-                </ModalСontainerInputs>
+                </ModalContainerInputs>
                 <ModalButtonPanelCustom>
                     <Button type="submit" dimension="s" appearance="primary">
                         Применить

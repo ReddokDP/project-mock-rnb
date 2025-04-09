@@ -2,7 +2,7 @@ import { InputField, Button, SelectField, Option, T } from '@admiral-ds/react-ui
 import { Link } from 'react-router-dom';
 import { Controller } from 'react-hook-form';
 import { InputsStyled } from '../../shared/styled';
-import { RoutesEnum } from '../../../routes/RoutesEnum';
+import { RoutesEnum } from '../../../app/routes/RoutesEnum';
 import { FormStyled } from '../styled/RegistrationForm.styled';
 import { useRegistrationForm } from '../hooks/useRegistrationForm';
 

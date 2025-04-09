@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { apiService } from '../modules/auth/services/apiService';
-import authReducer from '../modules/auth/slice/authSlice';
-import uiReducer from '../modules/shared/slice/uiSlice';
-import modalFilterReducer from '../modules/modals/slice/modalFilterSlice';
+import { apiService } from '../../modules/auth/services/apiService';
+import authReducer from '../../modules/auth/slice/authSlice';
+import uiReducer from '../../modules/shared/slice/uiSlice';
+import modalFilterReducer from '../../modules/modals/slice/modalFilterSlice';
 
 export const store = configureStore({
     reducer: {

@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../redux/store';
+import { selectUser } from '../../auth/slice/authSlice';
+import {selectLogOut} from '../slice/uiSlice'
 
 export const useShowLogOutButton = () => {
     const dispatch = useDispatch();
-    const user = useSelector((state: RootState) => state.auth.user);
-    const showLogout = useSelector((state: RootState) => state.ui.showLogout);
+
+    const user = useSelector(selectUser);
+    const showLogout = useSelector(selectLogOut)
 
     return {
         dispatch,

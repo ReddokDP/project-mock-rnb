@@ -7,9 +7,15 @@ export const Card = styled.div`
     border-radius: 10px;
     padding: 16px;
     background-color: ${LIGHT_THEME.color['Neutral/Neutral 00']};
-    color: ${LIGHT_THEME.color['Neutral/Neutral 00']} 
+    color: ${LIGHT_THEME.color['Neutral/Neutral 00']};
     cursor: pointer;
     height: 90px;
+
+    &[data-disabled="true"] {
+        cursor: not-allowed; //Почему то не отображается курсор, как указано.. (вроде бы не ошибся с условиями)
+        pointer-events: none;
+        opacity: 0.5;
+    }
 `;
 
 export const PathPage = styled(T)`

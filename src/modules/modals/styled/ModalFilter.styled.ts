@@ -24,7 +24,7 @@ export const ModalButtonPanelCustom = styled(ModalButtonPanel)`
     padding: 0;
 `;
 
-export const ModalСontainerInputs = styled.div`
+export const ModalContainerInputs = styled.div`
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(2, 1fr);

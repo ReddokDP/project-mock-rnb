@@ -3,7 +3,7 @@ import { Container, ContainerInfo, InfoMessage, IconInfoSolid } from '../styled/
 import { ActionBar } from '../../shared/components/ActionBar';
 import { Button, T } from '@admiral-ds/react-ui';
 import { MainContainer } from '../styled/Expenses.styled';
-import { ModalFilter } from '../../modals/component/ModalFilter';
+import { ModalFilter } from '../../modals/components/ModalFilter';
 import { useModalFilter } from '../../modals/hooks/useModalFilter';
 
 export const Expenses = () => {
@@ -23,7 +23,7 @@ export const Expenses = () => {
                     <Button
                         dimension="s"
                         appearance="secondary"
-                        iconStart={SystemFilterOutline()}
+                        iconStart={<SystemFilterOutline />}
                         onClick={handleOpenModal}>
                         Фильтр
                     </Button>

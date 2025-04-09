@@ -1,4 +1,4 @@
-import { RoutesEnum } from '../../../routes/RoutesEnum';
+import { RoutesEnum } from '../../../app/routes/RoutesEnum';
 
 interface Card {
     id: number;

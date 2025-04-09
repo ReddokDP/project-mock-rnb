@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { Header } from './Header';
+import { Header } from '../components/Header';
 import { LayoutStyled } from '../styled/Layout.styled';
 import { BodyGlobal } from '../styled';
 

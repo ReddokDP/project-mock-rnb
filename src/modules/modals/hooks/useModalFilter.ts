@@ -1,16 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { closeModalFilter, openModalFilter, setModalData } from '../slice/modalFilterSlice';
+import { closeModalFilter, openModalFilter, setModalData, selectorModalData, selectorIsOpen } from '../slice/modalFilterSlice';
 import { useForm } from 'react-hook-form';
-import { RootState } from '../../../redux/store';
 import { ModalData } from '../slice/modalFilterSlice';
 
 interface StatusOption {
     id: string;
     value: string;
 }
-
-const selectorModalData = (state: RootState) => state.modal.modalData;
-const selectorIsOpen = (state: RootState) => state.modal.isOpen;
 
 export const useModalFilter = () => {
     const dispatch = useDispatch();
@@ -20,49 +16,37 @@ export const useModalFilter = () => {
 
     const { control, handleSubmit, reset, getValues } = useForm<ModalData>({
         defaultValues: modalData || {
-            customerId: null,
-            contractNumber: null,
+            customerId: '',
+            contractNumber: '',
             asset: '',
-            startDate: null,
-            endDate: null,
+            startDate: '',
+            endDate: '',
             status: '',
         },
         mode: 'onChange',
     });
 
     const onSubmit = handleSubmit(() => {
-        const initialData: ModalData = {
-            customerId: null,
-            contractNumber: null,
-            asset: '',
-            startDate: null,
-            endDate: null,
-            status: '',
-        };
-        dispatch(setModalData(initialData))
+        const currentData = getValues();
+        dispatch(setModalData(currentData));
         dispatch(closeModalFilter());
     });
 
     const handleOpenModal = () => {
         dispatch(openModalFilter());
-        if (modalData) {
-            reset(modalData);
-        }
     };
 
     const handleCloseModal = () => {
-        const currentData = getValues();
-        dispatch(setModalData(currentData));
         dispatch(closeModalFilter());
     };
 
     const handleReset = () => {
         reset({
-            customerId: null,
-            contractNumber: null,
+            customerId: '',
+            contractNumber: '',
             asset: '',
-            startDate: null,
-            endDate: null,
+            startDate: '',
+            endDate: '',
             status: '',
         });
     };

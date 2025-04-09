@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useLogoutMutation } from '../services/apiService';
-import { RoutesEnum } from '../../../routes/RoutesEnum';
+import { RoutesEnum } from '../../../app/routes/RoutesEnum';
 import { useDispatch } from 'react-redux';
 import { logOut as logoutAction } from '../slice/authSlice';
 import { setShowLogout } from '../../shared/slice/uiSlice';

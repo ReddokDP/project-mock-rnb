@@ -23,7 +23,11 @@ const authSlice = createSlice({
             localStorage.removeItem('user');
         },
     },
+    selectors: {
+        selectUser: (state: AuthState) => state.user,
+    }
 });
 
 export const { setUser, logOut } = authSlice.actions;
+export const { selectUser } = authSlice.selectors
 export default authSlice.reducer;

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { RoutesEnum } from '../../../routes/RoutesEnum';
+import { RoutesEnum } from '../../../app/routes/RoutesEnum';
 import { Button } from '@admiral-ds/react-ui';
 import { SystemArrowLeftOutline, SystemFilterOutline, SystemSettingsOutline } from '@admiral-ds/icons';
 import { ActionBarContainerButton, ActionBarPath, ContainerBar, PathPage } from '../styled/ActionBar.styled';
@@ -17,7 +17,7 @@ export const ActionBar = ({ showFilterButton = true, showSettingsButton = true }
         <ContainerBar>
             <ActionBarPath>
                 <Link to={RoutesEnum.HOME_PAGE}>
-                    <Button iconStart={SystemArrowLeftOutline()} dimension="s" appearance="ghost">
+                    <Button iconStart={<SystemArrowLeftOutline />} dimension="s" appearance="ghost">
                         Налоги
                     </Button>
                 </Link>
@@ -30,13 +30,13 @@ export const ActionBar = ({ showFilterButton = true, showSettingsButton = true }
                     <Button
                         dimension="s"
                         appearance="secondary"
-                        iconStart={SystemFilterOutline()}
+                        iconStart={<SystemFilterOutline />}
                         onClick={handleOpenModal}>
                         Фильтр
                     </Button>
                 )}
                 {showSettingsButton && (
-                    <Button appearance="secondary" dimension="s" iconStart={SystemSettingsOutline()} displayAsSquare />
+                    <Button appearance="secondary" dimension="s" iconStart={<SystemSettingsOutline />} displayAsSquare />
                 )}
             </ActionBarContainerButton>
         </ContainerBar>

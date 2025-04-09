@@ -6,9 +6,9 @@ import { CUSTOM_THEME } from './modules/shared/themes/CUSTOM_THEME';
 import { Provider } from 'react-redux';
 import ErrorBoundary from './modules/shared/components/ErrorBoundary';
 import { RouterProvider } from 'react-router-dom';
-import { routesConfig } from './routes/routesConfig';
+import { routesConfig } from './app/routes/routesConfig';
 import { GlobalFont } from './app/GlobalFont';
-import { store } from './redux/store';
+import { store } from './app/redux/store';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <StrictMode>
