@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { RoutesEnum } from '../../../app/routes/RoutesEnum';
 import { Button } from '@admiral-ds/react-ui';
 import { SystemArrowLeftOutline, SystemFilterOutline, SystemSettingsOutline } from '@admiral-ds/icons';
-import { ActionBarContainerButton, ActionBarPath, ContainerBar, PathPage } from '../styled/ActionBar.styled';
-import { useModalFilter } from '../../modals/hooks/useModalFilter';
+import { ActionBarContainerButton, ActionBarPath, ContainerBar, PathPage } from './ActionBar.styled';
+import { useModalFilter } from '../../expenses/hooks/useModalFilter';
 
 interface ActionBarProps {
     showFilterButton?: boolean;

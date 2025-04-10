@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Controller } from 'react-hook-form';
 import { InputsStyled } from '../../shared/styled';
 import { RoutesEnum } from '../../../app/routes/RoutesEnum';
-import { FormStyled } from '../styled/RegistrationForm.styled';
+import { FormStyled } from './RegistrationForm.styled';
 import { useRegistrationForm } from '../hooks/useRegistrationForm';
 
 const selectOptions = [

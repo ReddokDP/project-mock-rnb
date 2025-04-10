@@ -1,4 +1,4 @@
-import { ContainerCards, Card, PathPage } from '../styled/HomePage.styled';
+import { ContainerCards, Card, PathPage } from './HomePage.styled';
 import { T } from '@admiral-ds/react-ui';
 import { cardsData } from '../constants/cardsData';
 import { useTransitionCards } from '../hooks/useTransitionCards';

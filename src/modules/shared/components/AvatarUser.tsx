@@ -1,9 +1,9 @@
 import { Avatar } from '@admiral-ds/react-ui';
-import { ButtonExit, AvatarContainer } from '../styled/AvatarUser.styled';
+import { ButtonExit, AvatarContainer } from './AvatarUser.styled';
 import { LIGHT_THEME } from '@admiral-ds/react-ui';
 import { setShowLogout } from '../slice/uiSlice';
-import { ButtonLogOut } from '../../auth/styled/AuthorizationForm.styled';
-import { IconButtonExit } from '../styled/AvatarUser.styled';
+import { ButtonLogOut } from '../../auth/components/AuthorizationForm.styled';
+import { IconButtonExit } from './AvatarUser.styled';
 import { useAuthLogOut } from '../../auth/hooks/useAuthLogOut';
 
 export const AvatarUser = () => {

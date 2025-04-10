@@ -3,7 +3,7 @@ import { InputsStyled } from '../../shared/styled';
 import { RoutesEnum } from '../../../app/routes/RoutesEnum';
 import { Link } from 'react-router-dom';
 import { Controller } from 'react-hook-form';
-import { FormStyled, SpinnerLoader } from '../styled/AuthorizationForm.styled';
+import { FormStyled, SpinnerLoader } from './AuthorizationForm.styled';
 import { useAuthorizationForm } from '../hooks/useAuthorizationForm';
 export const AuthorizationForm = () => {
     const { control, onSubmit, isLoading } = useAuthorizationForm();

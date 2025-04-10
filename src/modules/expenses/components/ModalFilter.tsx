@@ -4,7 +4,7 @@ import {
     ModalContainerInputs,
     ModalTitleStyleCustom,
     ModalButtonPanelCustom,
-} from '../styled/ModalFilter.styled';
+} from './ModalFilter.styled';
 import { useModalFilter } from '../hooks/useModalFilter';
 import { Controller } from 'react-hook-form';
 
