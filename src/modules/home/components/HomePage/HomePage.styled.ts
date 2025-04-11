@@ -2,27 +2,22 @@ import styled from 'styled-components';
 import { T } from '@admiral-ds/react-ui';
 import { LIGHT_THEME } from '@admiral-ds/react-ui';
 
-export const Card = styled.div`
+export const Card = styled.div<{ disabled: boolean }>`
     border: 1px solid ${LIGHT_THEME.color['Neutral/Neutral 20']};
     border-radius: 10px;
     padding: 16px;
     background-color: ${LIGHT_THEME.color['Neutral/Neutral 00']};
     color: ${LIGHT_THEME.color['Neutral/Neutral 00']};
-    cursor: pointer;
     height: 90px;
-
-    &[data-disabled="true"] {
-        cursor: not-allowed; //Почему то не отображается курсор, как указано.. (вроде бы не ошибся с условиями)
-        pointer-events: none;
-        opacity: 0.5;
-    }
+    cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+    opacity: ${({ disabled }) => (disabled ? '0.5' : '1')};
 `;
 
 export const PathPage = styled(T)`
     margin: 20px;
     font-size: 18px;
     font-weight: 400;
-`
+`;
 
 export const ContainerCards = styled.div`
     padding: 0 16px;
