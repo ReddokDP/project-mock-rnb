@@ -1,10 +1,12 @@
 import { InputField, Button, T } from '@admiral-ds/react-ui';
-import { InputsStyled } from '../../../../shared/styled';
+import { InputsStyled } from '../../../../shared';
 import { RoutesEnum } from '../../../../app/routes/RoutesEnum';
 import { Link } from 'react-router-dom';
 import { Controller } from 'react-hook-form';
 import { FormStyled, SpinnerLoader } from './AuthorizationForm.styled';
 import { useAuthorizationForm } from '../../hooks/useAuthorizationForm';
+import { AuthorizationFormFieldsEnum } from '../';
+
 export const AuthorizationForm = () => {
     const { control, onSubmit, isLoading } = useAuthorizationForm();
 
@@ -15,7 +17,7 @@ export const AuthorizationForm = () => {
             </T>
             <InputsStyled>
                 <Controller
-                    name="username"
+                    name={AuthorizationFormFieldsEnum.USERNAME}
                     control={control}
                     rules={{ required: 'Введите имя пользователя' }}
                     render={({ field, fieldState }) => (
@@ -30,7 +32,7 @@ export const AuthorizationForm = () => {
                     )}
                 />
                 <Controller
-                    name="password"
+                    name={AuthorizationFormFieldsEnum.PASSWORD}
                     control={control}
                     rules={{ required: 'Введите пароль' }}
                     render={({ field, fieldState }) => (

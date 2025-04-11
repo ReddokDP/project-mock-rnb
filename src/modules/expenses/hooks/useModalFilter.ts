@@ -1,7 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { closeModalFilter, openModalFilter, setModalData, selectorModalData, selectorIsOpen } from '../slice/modalFilterSlice';
+import {
+    closeModalFilter,
+    openModalFilter,
+    setModalData,
+    selectorExpensesData,
+    selectorIsOpen,
+} from '../slice/expensesSlice';
 import { useForm } from 'react-hook-form';
-import { ModalData } from '../slice/modalFilterSlice';
+import { ExpensesData } from '../slice/expensesSlice';
 
 interface StatusOption {
     id: string;
@@ -12,17 +18,19 @@ export const useModalFilter = () => {
     const dispatch = useDispatch();
 
     const isOpen = useSelector(selectorIsOpen);
-    const modalData = useSelector(selectorModalData);
+    const expensesData = useSelector(selectorExpensesData);
 
-    const { control, handleSubmit, reset, getValues } = useForm<ModalData>({
-        defaultValues: modalData || {
-            customerId: '',
-            contractNumber: '',
-            asset: '',
-            startDate: '',
-            endDate: '',
-            status: '',
-        },
+    const initialValuesInputs = {
+        customerId: '',
+        contractNumber: '',
+        asset: '',
+        startDate: '',
+        endDate: '',
+        status: '',
+    }
+
+    const { control, handleSubmit, reset, getValues } = useForm<ExpensesData>({
+        defaultValues: expensesData || initialValuesInputs,
         mode: 'onChange',
     });
 
@@ -41,14 +49,8 @@ export const useModalFilter = () => {
     };
 
     const handleReset = () => {
-        reset({
-            customerId: '',
-            contractNumber: '',
-            asset: '',
-            startDate: '',
-            endDate: '',
-            status: '',
-        });
+        reset(initialValuesInputs);
+        dispatch(setModalData(initialValuesInputs));
     };
 
     const statusOptions: StatusOption[] = [
@@ -61,7 +63,7 @@ export const useModalFilter = () => {
         isOpen,
         handleOpenModal,
         handleCloseModal,
-        modalData,
+        expensesData,
         control,
         onSubmit,
         handleReset,

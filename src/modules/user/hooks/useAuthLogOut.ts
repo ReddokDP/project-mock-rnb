@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLogoutMutation } from '../services/apiService';
 import { RoutesEnum } from '../../../app/routes/RoutesEnum';
 import { logOut as logoutAction } from '../slice/authSlice';
-import { setShowLogout, selectLogOut } from '../slice/uiSlice';
+import { setShowLogout, selectLogOut } from '../slice/authSlice';
 import { selectUser } from '../slice/authSlice';
 
 export const useAuthLogOut = () => {

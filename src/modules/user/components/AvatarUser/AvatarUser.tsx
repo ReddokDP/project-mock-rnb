@@ -1,7 +1,7 @@
 import { Avatar } from '@admiral-ds/react-ui';
 import { ButtonExit, AvatarContainer } from './AvatarUser.styled';
 import { LIGHT_THEME } from '@admiral-ds/react-ui';
-import { setShowLogout } from '../../slice/uiSlice';
+import { setShowLogout } from '../../slice/authSlice';
 import { ButtonLogOut } from '../AuthorizationForm/AuthorizationForm.styled';
 import { IconButtonExit } from './AvatarUser.styled';
 import { useAuthLogOut } from '../../hooks/useAuthLogOut';

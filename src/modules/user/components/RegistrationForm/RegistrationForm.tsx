@@ -1,10 +1,11 @@
 import { InputField, Button, SelectField, Option, T } from '@admiral-ds/react-ui';
 import { Link } from 'react-router-dom';
 import { Controller } from 'react-hook-form';
-import { InputsStyled } from '../../../../shared/styled';
+import { InputsStyled } from '../../../../shared';
 import { RoutesEnum } from '../../../../app/routes/RoutesEnum';
 import { FormStyled } from './RegistrationForm.styled';
 import { useRegistrationForm } from '../../hooks/useRegistrationForm';
+import { RegistrationFormFieldsEnum } from '../';
 
 const selectOptions = [
     { value: 'admin', label: 'Да' },
@@ -21,7 +22,7 @@ export const RegistrationForm = () => {
             </T>
             <InputsStyled>
                 <Controller
-                    name="username"
+                    name={RegistrationFormFieldsEnum.USERNAME}
                     control={control}
                     rules={{ required: 'Имя пользователя обязательно' }}
                     render={({ field, fieldState }) => (
@@ -37,7 +38,7 @@ export const RegistrationForm = () => {
                 />
 
                 <Controller
-                    name="email"
+                    name={RegistrationFormFieldsEnum.EMAIL}
                     control={control}
                     rules={{
                         pattern: {
@@ -58,7 +59,7 @@ export const RegistrationForm = () => {
                 />
 
                 <Controller
-                    name="password"
+                    name={RegistrationFormFieldsEnum.PASSWORD}
                     control={control}
                     rules={{
                         required: 'Пароль обязателен',
@@ -81,7 +82,7 @@ export const RegistrationForm = () => {
                 />
 
                 <Controller
-                    name="confirmPassword"
+                    name={RegistrationFormFieldsEnum.CONFIRM_PASSWORD}
                     control={control}
                     rules={{
                         required: 'Подтверждение пароля обязательно',
@@ -101,7 +102,7 @@ export const RegistrationForm = () => {
                 />
 
                 <Controller
-                    name="role"
+                    name={RegistrationFormFieldsEnum.ROLE}
                     control={control}
                     rules={{ required: 'Выбор обязателен' }}
                     render={({ field, fieldState }) => (

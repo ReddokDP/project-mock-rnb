@@ -4,16 +4,16 @@ import { AuthorizationForm } from '../../modules/user/components/AuthorizationFo
 import { HomePage } from '../../modules/home/components/HomePage/HomePage';
 import { RegistrationForm } from '../../modules/user/components/RegistrationForm/RegistrationForm';
 import { ExpensesPage } from '../../modules/expenses/components/ExpensesPage/ExpensesPage';
-import { ProtectedRoute } from './component/ProtectedRoute';
+import { ProtectedRoute } from './components/ProtectedRoute';
 import { RoutesEnum } from './RoutesEnum';
 
 export const routesConfig = createBrowserRouter([
     {
-        path: '/',
+        path: RoutesEnum.ROOT,
         element: <Layout />,
         children: [
             {
-                path: '/login',
+                path: RoutesEnum.AUTHORIZATION,
                 element: <AuthorizationForm />,
             },
             {
@@ -21,7 +21,7 @@ export const routesConfig = createBrowserRouter([
                 element: <RegistrationForm />,
             },
             {
-                path: '/',
+                path: RoutesEnum.ROOT,
                 element: <ProtectedRoute />,
                 children: [
                     {

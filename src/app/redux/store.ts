@@ -1,15 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { apiService } from '../../modules/user/services/apiService';
 import authReducer from '../../modules/user/slice/authSlice';
-import uiReducer from '../../modules/user/slice/uiSlice';
-import modalFilterReducer from '../../modules/expenses/slice/modalFilterSlice';
+import expensesFilterReducer from '../../modules/expenses/slice/expensesSlice';
 
 export const store = configureStore({
     reducer: {
         [apiService.reducerPath]: apiService.reducer,
         auth: authReducer,
-        ui: uiReducer,
-        modal: modalFilterReducer,
+        expensesFilter: expensesFilterReducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiService.middleware),
 });
