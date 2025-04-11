@@ -1,6 +1,6 @@
 import { SystemFilterOutline, ServiceInfoSolid } from '@admiral-ds/icons';
 import { Container, ContainerInfo, InfoMessage, IconInfoSolid } from './Expenses.styled';
-import { ActionBar } from '../../../shared/components/ActionBar';
+import { ActionBar } from '../../../../shared';
 import { Button, T } from '@admiral-ds/react-ui';
 import { MainContainer } from './Expenses.styled';
 import { ModalFilter } from '../ModalFilter/ModalFilter';
@@ -29,7 +29,7 @@ export const ExpensesPage = () => {
                     </Button>
                 </ContainerInfo>
             </Container>
-            {isOpen && (<ModalFilter/>)}
+            {isOpen && <ModalFilter />}
         </MainContainer>
     );
 };

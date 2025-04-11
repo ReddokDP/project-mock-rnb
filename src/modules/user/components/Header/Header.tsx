@@ -1,9 +1,7 @@
-import { HeaderStyled } from './Header.styled';
-import { LogoStyled } from './Logo.styled';
-import textRNB from '../../../assets/icons/logo/text_rnb.svg';
-import logoRNB from '../../../assets/icons/logo/logo_rnb.svg';
-import { Image } from './Logo.styled';
-import { AvatarUser } from './AvatarUser';
+import { HeaderStyled, Image, LogoStyled } from './Header.styled';
+import textRNB from '../../../../assets/icons/logo/text_rnb.svg';
+import logoRNB from '../../../../assets/icons/logo/logo_rnb.svg';
+import { AvatarUser } from '../AvatarUser';
 
 export const Header = () => {
     return (

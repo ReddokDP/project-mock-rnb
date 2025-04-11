@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectUser } from '../../../modules/auth/slice/authSlice';
+import { selectUser } from '../../../modules/user/slice/authSlice';
 
 interface ProtectedRouteProps {
     redirectPath?: string;

@@ -1,5 +1,5 @@
 import { InputField, Button, T } from '@admiral-ds/react-ui';
-import { InputsStyled } from '../../../shared/styled';
+import { InputsStyled } from '../../../../shared/styled';
 import { RoutesEnum } from '../../../../app/routes/RoutesEnum';
 import { Link } from 'react-router-dom';
 import { Controller } from 'react-hook-form';

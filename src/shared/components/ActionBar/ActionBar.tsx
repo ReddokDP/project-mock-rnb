@@ -3,7 +3,7 @@ import { RoutesEnum } from '../../../app/routes/RoutesEnum';
 import { Button } from '@admiral-ds/react-ui';
 import { SystemArrowLeftOutline, SystemFilterOutline, SystemSettingsOutline } from '@admiral-ds/icons';
 import { ActionBarContainerButton, ActionBarPath, ContainerBar, PathPage } from './ActionBar.styled';
-import { useModalFilter } from '../../expenses/hooks/useModalFilter';
+import { useModalFilter } from '../../../modules/expenses/hooks/useModalFilter';
 
 interface ActionBarProps {
     showFilterButton?: boolean;
@@ -36,7 +36,12 @@ export const ActionBar = ({ showFilterButton = true, showSettingsButton = true }
                     </Button>
                 )}
                 {showSettingsButton && (
-                    <Button appearance="secondary" dimension="s" iconStart={<SystemSettingsOutline />} displayAsSquare />
+                    <Button
+                        appearance="secondary"
+                        dimension="s"
+                        iconStart={<SystemSettingsOutline />}
+                        displayAsSquare
+                    />
                 )}
             </ActionBarContainerButton>
         </ContainerBar>

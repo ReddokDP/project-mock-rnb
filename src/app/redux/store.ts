@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { apiService } from '../../modules/auth/services/apiService';
-import authReducer from '../../modules/auth/slice/authSlice';
-import uiReducer from '../../modules/shared/slice/uiSlice';
+import { apiService } from '../../modules/user/services/apiService';
+import authReducer from '../../modules/user/slice/authSlice';
+import uiReducer from '../../modules/user/slice/uiSlice';
 import modalFilterReducer from '../../modules/expenses/slice/modalFilterSlice';
 
 export const store = configureStore({

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { LIGHT_THEME } from '@admiral-ds/react-ui';
 
 interface ImageProps {
     image: string;
@@ -7,6 +8,15 @@ interface ImageProps {
     marginLeft?: string;
     marginTop?: string;
 }
+
+export const HeaderStyled = styled.header`
+    display: flex;
+    height: 55px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: ${LIGHT_THEME.color['Neutral/Neutral 00']};
+`;
 
 export const LogoStyled = styled.div`
     display: flex;

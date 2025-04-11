@@ -1,7 +1,7 @@
 import { InputField, Button, SelectField, Option, T } from '@admiral-ds/react-ui';
 import { Link } from 'react-router-dom';
 import { Controller } from 'react-hook-form';
-import { InputsStyled } from '../../../shared/styled';
+import { InputsStyled } from '../../../../shared/styled';
 import { RoutesEnum } from '../../../../app/routes/RoutesEnum';
 import { FormStyled } from './RegistrationForm.styled';
 import { useRegistrationForm } from '../../hooks/useRegistrationForm';
@@ -111,8 +111,7 @@ export const RegistrationForm = () => {
                             status={fieldState.error ? 'error' : undefined}
                             extraText={fieldState.error?.message}
                             required
-                            {...field}
-                        >
+                            {...field}>
                             {selectOptions.map((option) => (
                                 <Option key={option.value} value={option.value}>
                                     {option.label}

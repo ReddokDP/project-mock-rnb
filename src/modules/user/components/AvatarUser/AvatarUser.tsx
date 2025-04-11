@@ -1,10 +1,10 @@
 import { Avatar } from '@admiral-ds/react-ui';
 import { ButtonExit, AvatarContainer } from './AvatarUser.styled';
 import { LIGHT_THEME } from '@admiral-ds/react-ui';
-import { setShowLogout } from '../slice/uiSlice';
-import { ButtonLogOut } from '../../auth/components/AuthorizationForm/AuthorizationForm.styled';
+import { setShowLogout } from '../../slice/uiSlice';
+import { ButtonLogOut } from '../AuthorizationForm/AuthorizationForm.styled';
 import { IconButtonExit } from './AvatarUser.styled';
-import { useAuthLogOut } from '../../auth/hooks/useAuthLogOut';
+import { useAuthLogOut } from '../../hooks/useAuthLogOut';
 
 export const AvatarUser = () => {
     const { user, showLogout, handleLogout, dispatch } = useAuthLogOut();

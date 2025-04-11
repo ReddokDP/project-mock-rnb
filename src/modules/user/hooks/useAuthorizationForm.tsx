@@ -19,8 +19,8 @@ export const useAuthorizationForm = () => {
     const onSubmit = handleSubmit(async (data: FormValues) => {
         try {
             const response = await login(data).unwrap();
-            localStorage.setItem('user', JSON.stringify(response.user.username))
-            dispatch(setUser({user: response.user }));
+            localStorage.setItem('user', JSON.stringify(response.user.username));
+            dispatch(setUser({ user: response.user }));
             navigate(RoutesEnum.HOME_PAGE);
         } catch (error) {
             console.error('Ошибка авторизации:', error);

@@ -1,11 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Layout } from '../../modules/shared/layouts/Layout';
-import { AuthorizationForm } from '../../modules/auth/components/AuthorizationForm/AuthorizationForm';
+import { Layout } from '../../layouts/Layout';
+import { AuthorizationForm } from '../../modules/user/components/AuthorizationForm/AuthorizationForm';
 import { HomePage } from '../../modules/home/components/HomePage/HomePage';
-import { RegistrationForm } from '../../modules/auth/components/RegistrationForm/RegistrationForm';
-import { RoutesEnum } from './RoutesEnum';
+import { RegistrationForm } from '../../modules/user/components/RegistrationForm/RegistrationForm';
 import { ExpensesPage } from '../../modules/expenses/components/ExpensesPage/ExpensesPage';
 import { ProtectedRoute } from './component/ProtectedRoute';
+import { RoutesEnum } from './RoutesEnum';
 
 export const routesConfig = createBrowserRouter([
     {
