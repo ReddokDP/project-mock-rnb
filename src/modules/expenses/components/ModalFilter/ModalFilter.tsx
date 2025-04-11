@@ -5,7 +5,7 @@ import {
     ModalTitleStyleCustom,
     ModalButtonPanelCustom,
 } from './ModalFilter.styled';
-import { useModalFilter } from '../hooks/useModalFilter';
+import { useModalFilter } from '../../hooks/useModalFilter';
 import { Controller } from 'react-hook-form';
 
 export const ModalFilter = () => {

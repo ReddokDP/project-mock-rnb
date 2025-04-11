@@ -2,7 +2,7 @@ import { Avatar } from '@admiral-ds/react-ui';
 import { ButtonExit, AvatarContainer } from './AvatarUser.styled';
 import { LIGHT_THEME } from '@admiral-ds/react-ui';
 import { setShowLogout } from '../slice/uiSlice';
-import { ButtonLogOut } from '../../auth/components/AuthorizationForm.styled';
+import { ButtonLogOut } from '../../auth/components/AuthorizationForm/AuthorizationForm.styled';
 import { IconButtonExit } from './AvatarUser.styled';
 import { useAuthLogOut } from '../../auth/hooks/useAuthLogOut';
 

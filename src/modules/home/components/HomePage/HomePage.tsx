@@ -1,7 +1,7 @@
 import { ContainerCards, Card, PathPage } from './HomePage.styled';
 import { T } from '@admiral-ds/react-ui';
-import { cardsData } from '../constants/cardsData';
-import { useTransitionCards } from '../hooks/useTransitionCards';
+import { cardsData } from '../../constants/cardsData';
+import { useTransitionCards } from '../../hooks/useTransitionCards';
 
 export const HomePage = () => {
     const { handleCardClick } = useTransitionCards();

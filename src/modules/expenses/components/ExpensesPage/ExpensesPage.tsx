@@ -1,12 +1,12 @@
 import { SystemFilterOutline, ServiceInfoSolid } from '@admiral-ds/icons';
 import { Container, ContainerInfo, InfoMessage, IconInfoSolid } from './Expenses.styled';
-import { ActionBar } from '../../shared/components/ActionBar';
+import { ActionBar } from '../../../shared/components/ActionBar';
 import { Button, T } from '@admiral-ds/react-ui';
 import { MainContainer } from './Expenses.styled';
-import { ModalFilter } from './ModalFilter';
-import { useModalFilter } from '../hooks/useModalFilter';
+import { ModalFilter } from '../ModalFilter/ModalFilter';
+import { useModalFilter } from '../../hooks/useModalFilter';
 
-export const Expenses = () => {
+export const ExpensesPage = () => {
     const { handleOpenModal, isOpen } = useModalFilter();
 
     return (

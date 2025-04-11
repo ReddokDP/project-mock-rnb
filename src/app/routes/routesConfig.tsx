@@ -1,10 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Layout } from '../../modules/shared/layouts/Layout';
-import { AuthorizationForm } from '../../modules/auth/components/AuthorizationForm';
-import { HomePage } from '../../modules/home/components/HomePage';
-import { RegistrationForm } from '../../modules/auth/components/RegistrationForm';
+import { AuthorizationForm } from '../../modules/auth/components/AuthorizationForm/AuthorizationForm';
+import { HomePage } from '../../modules/home/components/HomePage/HomePage';
+import { RegistrationForm } from '../../modules/auth/components/RegistrationForm/RegistrationForm';
 import { RoutesEnum } from './RoutesEnum';
-import { Expenses } from '../../modules/expenses/components/Expenses';
+import { ExpensesPage } from '../../modules/expenses/components/ExpensesPage/ExpensesPage';
 import { ProtectedRoute } from './component/ProtectedRoute';
 
 export const routesConfig = createBrowserRouter([
@@ -30,7 +30,7 @@ export const routesConfig = createBrowserRouter([
                     },
                     {
                         path: RoutesEnum.EXPENSES,
-                        element: <Expenses />,
+                        element: <ExpensesPage />,
                     },
                 ],
             },
