@@ -8,11 +8,56 @@ import {
 } from '../slice/expensesSlice';
 import { useForm } from 'react-hook-form';
 import { ExpensesData } from '../slice/expensesSlice';
+import { useGetDataMutation } from '../sevices/apiExpensesTable';
+import { setTableExpenses } from '../slice/expensesTableSlice';
 
 interface StatusOption {
     id: string;
     value: string;
+    title: string;
 }
+
+interface Pagination {
+    numberOfItemsPerPage: number;
+    currentPageNumber: number;
+}
+
+interface Sorting {
+    sortBy: string;
+    sortOrder: 'ASC' | 'DESC';
+}
+
+interface RequestPayload {
+    startDate: string;
+    endDate: string;
+    status: string;
+    pagination: Pagination;
+    sorting: Sorting;
+}
+
+interface FormData {
+    startDate: string;
+    endDate: string;
+    status?: string;
+}
+
+interface InputValues  {
+    customerId: string;
+    contractNumber: string;
+    asset: string;
+    startDate: string;
+    endDate: string;
+    status: string;
+}
+
+const initialValuesInputs: InputValues  = {
+    customerId: '',
+    contractNumber: '',
+    asset: '',
+    startDate: '',
+    endDate: '',
+    status: '',
+};
 
 export const useModalFilter = () => {
     const dispatch = useDispatch();
@@ -20,24 +65,37 @@ export const useModalFilter = () => {
     const isOpen = useSelector(selectorIsOpen);
     const expensesData = useSelector(selectorExpensesData);
 
-    const initialValuesInputs = {
-        customerId: '',
-        contractNumber: '',
-        asset: '',
-        startDate: '',
-        endDate: '',
-        status: '',
-    }
+    const [getData] = useGetDataMutation();
 
     const { control, handleSubmit, reset, getValues } = useForm<ExpensesData>({
         defaultValues: expensesData || initialValuesInputs,
         mode: 'onChange',
     });
 
-    const onSubmit = handleSubmit(() => {
-        const currentData = getValues();
-        dispatch(setModalData(currentData));
-        dispatch(closeModalFilter());
+    const onSubmit = handleSubmit(async ({ startDate, endDate, status }: FormData) => {
+        try {
+            const requestPayload: RequestPayload = {
+                startDate: new Date(startDate).toISOString(),
+                endDate: new Date(endDate).toISOString(),
+                status: status || 'Confirmed',
+                pagination: {
+                    numberOfItemsPerPage: 10,
+                    currentPageNumber: 1,
+                },
+                sorting: {
+                    sortBy: 'actualDate',
+                    sortOrder: 'DESC',
+                },
+            };
+
+            const response = await getData(requestPayload).unwrap();
+            dispatch(setTableExpenses(response.operInfo));
+            const currentData = getValues();
+            dispatch(setModalData(currentData));
+            dispatch(closeModalFilter());
+        } catch (error) {
+            console.error('Ошибка при отправке запроса:', error);
+        }
     });
 
     const handleOpenModal = () => {
@@ -54,9 +112,9 @@ export const useModalFilter = () => {
     };
 
     const statusOptions: StatusOption[] = [
-        { id: '1', value: 'Новый' },
-        { id: '2', value: 'Завершена' },
-        { id: '3', value: 'Отменена' },
+        { id: '1', value: 'New', title: 'Новый' },
+        { id: '2', value: 'Confirmed', title: 'Завершенный' },
+        { id: '3', value: 'Canceled', title: 'Отмененный' },
     ];
 
     return {

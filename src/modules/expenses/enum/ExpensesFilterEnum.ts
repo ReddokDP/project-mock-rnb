@@ -1,4 +1,4 @@
-export enum ExpensesEnum {
+export enum ExpensesFilterEnum {
     CUSTOMER_ID = 'customerId',
     CONTRACT_NUMBER = 'contractNumber',
     ASSET = 'asset',
