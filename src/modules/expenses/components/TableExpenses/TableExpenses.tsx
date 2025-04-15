@@ -5,6 +5,7 @@ import { Container, WrapperContainer } from './TableExpenses.styled';
 import type { Column } from '@admiral-ds/react-ui';
 import { useState } from 'react';
 import { ExpensesTableEnum } from '../../enum/ExpensesTableEnum';
+import { Pagination } from '../Pagination/Pagination';
 
 const columnsList: Column[] = [
     { name: ExpensesTableEnum.OPER_ID, title: 'ИД Операции' },
@@ -39,6 +40,7 @@ export function TableExpenses() {
             <WrapperContainer>
                 <Table columnList={columnsList} rowList={dataRowTable ?? []} onColumnResize={handleResize} />
             </WrapperContainer>
+            <Pagination />
         </Container>
     );
 }

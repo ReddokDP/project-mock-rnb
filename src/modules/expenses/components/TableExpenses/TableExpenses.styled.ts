@@ -10,4 +10,5 @@ export const Container = styled.div`
 export const WrapperContainer = styled.div`
     display: flex;
     height: 700px;
+    margin-bottom: 20px;
 `;

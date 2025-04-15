@@ -5,7 +5,7 @@ import { Button, T } from '@admiral-ds/react-ui';
 import { MainContainer } from './Expenses.styled';
 import { ModalFilter } from '../ModalFilter/ModalFilter';
 import { useModalFilter } from '../../hooks/useModalFilter';
-import { TableExpenses } from '../TableExpenses/TableExpenses.jsx';
+import { TableExpenses } from '../TableExpenses/TableExpenses';
 import { useSelector } from 'react-redux';
 import { selectExpenses } from '../../slice/expensesTableSlice';
 

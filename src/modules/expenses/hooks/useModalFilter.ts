@@ -10,6 +10,7 @@ import { useForm } from 'react-hook-form';
 import { ExpensesData } from '../slice/expensesSlice';
 import { useGetDataMutation } from '../sevices/apiExpensesTable';
 import { setTableExpenses } from '../slice/expensesTableSlice';
+import { useState, useEffect } from 'react';
 
 interface StatusOption {
     id: string;
@@ -67,35 +68,55 @@ export const useModalFilter = () => {
 
     const [getData] = useGetDataMutation();
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(10);
+    const [totalItems, setTotalItems] = useState(0);
+
     const { control, handleSubmit, reset, getValues } = useForm<ExpensesData>({
         defaultValues: expensesData || initialValuesInputs,
         mode: 'onChange',
     });
 
-    const onSubmit = handleSubmit(async ({ startDate, endDate, status }: FormData) => {
-        try {
-            const requestPayload: RequestPayload = {
-                startDate: new Date(startDate).toISOString(),
-                endDate: new Date(endDate).toISOString(),
-                status: status || 'Confirmed',
-                pagination: {
-                    numberOfItemsPerPage: 10,
-                    currentPageNumber: 1,
-                },
-                sorting: {
-                    sortBy: 'actualDate',
-                    sortOrder: 'DESC',
-                },
-            };
+    useEffect(() => {
 
-            const response = await getData(requestPayload).unwrap();
-            dispatch(setTableExpenses(response.operInfo));
-            const currentData = getValues();
-            dispatch(setModalData(currentData));
-            dispatch(closeModalFilter());
-        } catch (error) {
-            console.error('Ошибка при отправке запроса:', error);
-        }
+        if (!expensesData?.startDate || !expensesData?.endDate) return;
+
+        const fetchData = async ({ startDate, endDate, status }: FormData) => {
+            try {
+                const requestPayload: RequestPayload = {
+                    startDate: new Date(startDate).toISOString(),
+                    endDate: new Date(endDate).toISOString(),
+                    status: status || 'Confirmed',
+                    pagination: {
+                        numberOfItemsPerPage: itemsPerPage,
+                        currentPageNumber: currentPage,
+                    },
+                    sorting: {
+                        sortBy: 'actualDate',
+                        sortOrder: 'DESC',
+                    },
+                };
+
+                const response = await getData(requestPayload).unwrap();
+                dispatch(setTableExpenses(response.operInfo));
+                setTotalItems(response.pagination.totalAmountOfItems);
+            } catch (error) {
+                console.error('Ошибка при получении данных:', error);
+            }
+        };
+
+        fetchData({
+            startDate: expensesData.startDate,
+            endDate: expensesData.endDate,
+            status: expensesData.status,
+        })
+    }, [currentPage, itemsPerPage, expensesData, getData, dispatch]);
+
+    const onSubmit = handleSubmit(() => {
+        const currentData = getValues();
+        dispatch(setModalData(currentData));
+        dispatch(closeModalFilter());
+        setCurrentPage(1);
     });
 
     const handleOpenModal = () => {
@@ -109,6 +130,7 @@ export const useModalFilter = () => {
     const handleReset = () => {
         reset(initialValuesInputs);
         dispatch(setModalData(initialValuesInputs));
+        setCurrentPage(1);
     };
 
     const statusOptions: StatusOption[] = [
@@ -126,5 +148,10 @@ export const useModalFilter = () => {
         onSubmit,
         handleReset,
         statusOptions,
+        totalItems,
+        currentPage,
+        itemsPerPage,
+        setCurrentPage,
+        setItemsPerPage,
     };
 };
