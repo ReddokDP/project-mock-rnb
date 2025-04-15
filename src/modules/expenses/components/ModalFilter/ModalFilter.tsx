@@ -7,7 +7,7 @@ import {
 } from './ModalFilter.styled';
 import { useModalFilter } from '../../hooks/useModalFilter';
 import { Controller } from 'react-hook-form';
-import { ExpensesEnum } from '../../enum/ExpensesEnum';
+import { ExpensesFilterEnum } from '../../enum/ExpensesFilterEnum';
 
 export const ModalFilter = () => {
 
@@ -20,7 +20,7 @@ export const ModalFilter = () => {
             <form onSubmit={onSubmit}>
                 <ModalContainerInputs>
                     <Controller
-                        name={ExpensesEnum.CUSTOMER_ID}
+                        name={ExpensesFilterEnum.CUSTOMER_ID}
                         control={control}
                         render={({ field }) => (
                             <InputField
@@ -33,7 +33,7 @@ export const ModalFilter = () => {
                         )}
                     />
                     <Controller
-                        name={ExpensesEnum.CONTRACT_NUMBER}
+                        name={ExpensesFilterEnum.CONTRACT_NUMBER}
                         control={control}
                         render={({ field }) => (
                             <InputField
@@ -46,7 +46,7 @@ export const ModalFilter = () => {
                         )}
                     />
                     <Controller
-                        name={ExpensesEnum.ASSET}
+                        name={ExpensesFilterEnum.ASSET}
                         control={control}
                         render={({ field }) => (
                             <InputField
@@ -59,7 +59,7 @@ export const ModalFilter = () => {
                         )}
                     />
                     <Controller
-                        name={ExpensesEnum.START_DATE}
+                        name={ExpensesFilterEnum.START_DATE}
                         control={control}
                         rules={{ required: 'Начальная дата перевода обязательная!' }}
                         render={({ field, fieldState }) => (
@@ -75,7 +75,7 @@ export const ModalFilter = () => {
                         )}
                     />
                     <Controller
-                        name={ExpensesEnum.END_DATE}
+                        name={ExpensesFilterEnum.END_DATE}
                         control={control}
                         rules={{ required: 'Конечная дата перевода обязательная!' }}
                         render={({ field, fieldState }) => (
@@ -91,13 +91,13 @@ export const ModalFilter = () => {
                         )}
                     />
                     <Controller
-                        name={ExpensesEnum.STATUS}
+                        name={ExpensesFilterEnum.STATUS}
                         control={control}
                         render={({ field }) => (
                             <SelectField label="Статус" placeholder="Выберите статус" dimension="s" {...field}>
-                                {statusOptions.map(({ id, value }) => (
+                                {statusOptions.map(({ id, value, title }) => (
                                     <Option key={id} value={value}>
-                                        {value}
+                                        {title}
                                     </Option>
                                 ))}
                             </SelectField>

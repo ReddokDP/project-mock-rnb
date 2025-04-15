@@ -1,0 +1,16 @@
+export enum ExpensesTableEnum {
+    OPER_ID = 'operId',
+    OBJECT_ID = 'objectId',
+    STATUS = 'status',
+    BUY_SELL = 'buySell',
+    EXTERNAL_ID = 'externalId',
+    DOCUMENT_ID = 'documentId',
+    EVENT_ID = 'eventId',
+    IIS = 'isIIS',
+    CLIENT_ID = 'clientId',
+    ASSET_ID = 'assetId',
+    ASSET_NAME = 'assetName',
+    ISIN = 'isin',
+    ACTUAL_DATE = 'actualDate',
+    EVENT_QTY = 'eventQty',
+}
