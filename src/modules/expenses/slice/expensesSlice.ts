@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface ExpensesData {
-    customerId: string;
-    contractNumber: string;
-    asset: string;
+    clientId: string;
+    assetId: string;
+    clientContractId: string;
     startDate: string;
     endDate: string;
     status: string;

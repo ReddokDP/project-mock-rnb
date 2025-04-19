@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useLogoutMutation } from '../services/apiService';
+import { useLogoutMutation } from '../../../app/services/apiService';
 import { RoutesEnum } from '../../../app/routes/RoutesEnum';
 import { useDispatch } from 'react-redux';
 import { logOut as logoutAction } from '../slice/authSlice';

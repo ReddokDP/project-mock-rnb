@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useLoginMutation } from '../services/apiService';
+import { useLoginMutation } from '../../../app/services/apiService';
 import { RoutesEnum } from '../../../app/routes/RoutesEnum';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';

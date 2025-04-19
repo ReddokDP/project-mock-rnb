@@ -8,52 +8,14 @@ import {
 } from '../slice/expensesSlice';
 import { useForm } from 'react-hook-form';
 import { ExpensesData } from '../slice/expensesSlice';
-import { useGetDataMutation } from '../sevices/apiExpensesTable';
+import { useGetDataMutation } from '../../../app/services/apiService';
 import { setTableExpenses } from '../slice/expensesTableSlice';
+import { StatusOption, RequestPayload, FormData, InputValues } from '../types/typesModalFilter';
 
-interface StatusOption {
-    id: string;
-    value: string;
-    title: string;
-}
-
-interface Pagination {
-    numberOfItemsPerPage: number;
-    currentPageNumber: number;
-}
-
-interface Sorting {
-    sortBy: string;
-    sortOrder: 'ASC' | 'DESC';
-}
-
-interface RequestPayload {
-    startDate: string;
-    endDate: string;
-    status: string;
-    pagination: Pagination;
-    sorting: Sorting;
-}
-
-interface FormData {
-    startDate: string;
-    endDate: string;
-    status?: string;
-}
-
-interface InputValues  {
-    customerId: string;
-    contractNumber: string;
-    asset: string;
-    startDate: string;
-    endDate: string;
-    status: string;
-}
-
-const initialValuesInputs: InputValues  = {
-    customerId: '',
-    contractNumber: '',
-    asset: '',
+const initialValuesInputs: InputValues = {
+    clientId: '',
+    assetId: '',
+    clientContractId: '',
     startDate: '',
     endDate: '',
     status: '',
@@ -72,31 +34,36 @@ export const useModalFilter = () => {
         mode: 'onChange',
     });
 
-    const onSubmit = handleSubmit(async ({ startDate, endDate, status }: FormData) => {
-        try {
-            const requestPayload: RequestPayload = {
-                startDate: new Date(startDate).toISOString(),
-                endDate: new Date(endDate).toISOString(),
-                status: status || 'Confirmed',
-                pagination: {
-                    numberOfItemsPerPage: 10,
-                    currentPageNumber: 1,
-                },
-                sorting: {
-                    sortBy: 'actualDate',
-                    sortOrder: 'DESC',
-                },
-            };
+    const onSubmit = handleSubmit(
+        async ({ clientId, assetId, clientContractId, startDate, endDate, status }: FormData) => {
+            try {
+                const requestPayload: RequestPayload = {
+                    clientId: clientId || '',
+                    assetId: assetId || '',
+                    clientContractId: clientContractId || '',
+                    startDate: new Date(startDate).toISOString(),
+                    endDate: new Date(endDate).toISOString(),
+                    status: status || 'Confirmed',
+                    pagination: {
+                        numberOfItemsPerPage: 10,
+                        currentPageNumber: 1,
+                    },
+                    sorting: {
+                        sortBy: 'actualDate',
+                        sortOrder: 'DESC',
+                    },
+                };
 
-            const response = await getData(requestPayload).unwrap();
-            dispatch(setTableExpenses(response.operInfo));
-            const currentData = getValues();
-            dispatch(setModalData(currentData));
-            dispatch(closeModalFilter());
-        } catch (error) {
-            console.error('Ошибка при отправке запроса:', error);
-        }
-    });
+                const response = await getData(requestPayload).unwrap();
+                dispatch(setTableExpenses(response.operInfo));
+                const currentData = getValues();
+                dispatch(setModalData(currentData));
+                dispatch(closeModalFilter());
+            } catch (error) {
+                console.error('Ошибка при отправке запроса:', error);
+            }
+        },
+    );
 
     const handleOpenModal = () => {
         dispatch(openModalFilter());

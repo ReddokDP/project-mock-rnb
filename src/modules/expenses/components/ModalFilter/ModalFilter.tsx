@@ -20,7 +20,7 @@ export const ModalFilter = () => {
             <form onSubmit={onSubmit}>
                 <ModalContainerInputs>
                     <Controller
-                        name={ExpensesFilterEnum.CUSTOMER_ID}
+                        name={ExpensesFilterEnum.CLIENT_ID}
                         control={control}
                         render={({ field }) => (
                             <InputField
@@ -33,7 +33,7 @@ export const ModalFilter = () => {
                         )}
                     />
                     <Controller
-                        name={ExpensesFilterEnum.CONTRACT_NUMBER}
+                        name={ExpensesFilterEnum.ASSET_ID}
                         control={control}
                         render={({ field }) => (
                             <InputField
@@ -46,7 +46,7 @@ export const ModalFilter = () => {
                         )}
                     />
                     <Controller
-                        name={ExpensesFilterEnum.ASSET}
+                        name={ExpensesFilterEnum.CLIENT_CONTRACT_ID}
                         control={control}
                         render={({ field }) => (
                             <InputField

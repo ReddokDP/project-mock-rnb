@@ -5,6 +5,7 @@ export enum ExpensesTableEnum {
     BUY_SELL = 'buySell',
     EXTERNAL_ID = 'externalId',
     DOCUMENT_ID = 'documentId',
+    CLIENT_CONTRACT_ID = 'clientContractId',
     EVENT_ID = 'eventId',
     IIS = 'isIIS',
     CLIENT_ID = 'clientId',
