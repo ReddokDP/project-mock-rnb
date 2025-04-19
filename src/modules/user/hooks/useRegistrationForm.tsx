@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { useRegistrationMutation } from '../services/apiService';
+import { useRegistrationMutation } from '../../../app/services/apiService';
 import { RoutesEnum } from '../../../app/routes/RoutesEnum';
 
 interface RegistrationFormData {
